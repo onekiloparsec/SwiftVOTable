@@ -11,6 +11,7 @@
 		9F01ABB01ABD68BD00EB6373 /* SwiftVOTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F01ABA41ABD68BD00EB6373 /* SwiftVOTable.framework */; };
 		9F01ABB71ABD68BD00EB6373 /* SwiftVOTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABB61ABD68BD00EB6373 /* SwiftVOTableTests.swift */; };
 		9F01ABC11ABD717300EB6373 /* VOTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABC01ABD717300EB6373 /* VOTable.swift */; };
+		9F01ABC31ABD81BA00EB6373 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABC21ABD81BA00EB6373 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		9F01ABB51ABD68BD00EB6373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F01ABB61ABD68BD00EB6373 /* SwiftVOTableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftVOTableTests.swift; sourceTree = "<group>"; };
 		9F01ABC01ABD717300EB6373 /* VOTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOTable.swift; sourceTree = "<group>"; };
+		9F01ABC21ABD81BA00EB6373 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		9F01ABA71ABD68BD00EB6373 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9F01ABC21ABD81BA00EB6373 /* README.md */,
 				9F01ABA81ABD68BD00EB6373 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F01ABC31ABD81BA00EB6373 /* README.md in Sources */,
 				9F01ABC11ABD717300EB6373 /* VOTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,7 +11,6 @@
 		9F01ABB01ABD68BD00EB6373 /* SwiftVOTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F01ABA41ABD68BD00EB6373 /* SwiftVOTable.framework */; };
 		9F01ABB71ABD68BD00EB6373 /* SwiftVOTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABB61ABD68BD00EB6373 /* SwiftVOTableTests.swift */; };
 		9F01ABC11ABD717300EB6373 /* VOTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABC01ABD717300EB6373 /* VOTable.swift */; };
-		9F01ABC31ABD81BA00EB6373 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABC21ABD81BA00EB6373 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,7 +214,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F01ABC31ABD81BA00EB6373 /* README.md in Sources */,
 				9F01ABC11ABD717300EB6373 /* VOTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,6 +406,7 @@
 				9F01ABBC1ABD68BD00EB6373 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9F01ABBD1ABD68BD00EB6373 /* Build configuration list for PBXNativeTarget "SwiftVOTableTests" */ = {
 			isa = XCConfigurationList;
@@ -416,6 +415,7 @@
 				9F01ABBF1ABD68BD00EB6373 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

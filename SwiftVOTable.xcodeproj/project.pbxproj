@@ -9,8 +9,13 @@
 /* Begin PBXBuildFile section */
 		9F01ABAA1ABD68BD00EB6373 /* SwiftVOTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F01ABA91ABD68BD00EB6373 /* SwiftVOTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F01ABB01ABD68BD00EB6373 /* SwiftVOTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F01ABA41ABD68BD00EB6373 /* SwiftVOTable.framework */; };
-		9F01ABB71ABD68BD00EB6373 /* SwiftVOTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABB61ABD68BD00EB6373 /* SwiftVOTableTests.swift */; };
+		9F01ABB71ABD68BD00EB6373 /* VOTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABB61ABD68BD00EB6373 /* VOTableTests.swift */; };
 		9F01ABC11ABD717300EB6373 /* VOTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABC01ABD717300EB6373 /* VOTable.swift */; };
+		9F35E3091AD03C7C0008D7FF /* VOTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */; };
+		9F35E30B1AD043F50008D7FF /* VOTableParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E30A1AD043F50008D7FF /* VOTableParserTests.swift */; };
+		9F35E30D1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F35E30C1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt */; };
+		9F9A5F841AD046C10031F555 /* VOTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABC01ABD717300EB6373 /* VOTable.swift */; };
+		9F9A5F851AD046C30031F555 /* VOTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,9 +34,12 @@
 		9F01ABA91ABD68BD00EB6373 /* SwiftVOTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftVOTable.h; sourceTree = "<group>"; };
 		9F01ABAF1ABD68BD00EB6373 /* SwiftVOTableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftVOTableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F01ABB51ABD68BD00EB6373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F01ABB61ABD68BD00EB6373 /* SwiftVOTableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftVOTableTests.swift; sourceTree = "<group>"; };
+		9F01ABB61ABD68BD00EB6373 /* VOTableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOTableTests.swift; sourceTree = "<group>"; };
 		9F01ABC01ABD717300EB6373 /* VOTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOTable.swift; sourceTree = "<group>"; };
 		9F01ABC21ABD81BA00EB6373 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOTableParser.swift; sourceTree = "<group>"; };
+		9F35E30A1AD043F50008D7FF /* VOTableParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOTableParserTests.swift; sourceTree = "<group>"; };
+		9F35E30C1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OfficialVOTableDocSimpleTable.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +84,7 @@
 			children = (
 				9F01ABA91ABD68BD00EB6373 /* SwiftVOTable.h */,
 				9F01ABC01ABD717300EB6373 /* VOTable.swift */,
+				9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */,
 				9F01ABA71ABD68BD00EB6373 /* Supporting Files */,
 			);
 			path = SwiftVOTable;
@@ -93,7 +102,8 @@
 		9F01ABB31ABD68BD00EB6373 /* SwiftVOTableTests */ = {
 			isa = PBXGroup;
 			children = (
-				9F01ABB61ABD68BD00EB6373 /* SwiftVOTableTests.swift */,
+				9F01ABB61ABD68BD00EB6373 /* VOTableTests.swift */,
+				9F35E30A1AD043F50008D7FF /* VOTableParserTests.swift */,
 				9F01ABB41ABD68BD00EB6373 /* Supporting Files */,
 			);
 			path = SwiftVOTableTests;
@@ -103,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				9F01ABB51ABD68BD00EB6373 /* Info.plist */,
+				9F35E30C1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -204,6 +215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F35E30D1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F35E3091AD03C7C0008D7FF /* VOTableParser.swift in Sources */,
 				9F01ABC11ABD717300EB6373 /* VOTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,7 +235,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F01ABB71ABD68BD00EB6373 /* SwiftVOTableTests.swift in Sources */,
+				9F9A5F851AD046C30031F555 /* VOTableParser.swift in Sources */,
+				9F35E30B1AD043F50008D7FF /* VOTableParserTests.swift in Sources */,
+				9F9A5F841AD046C10031F555 /* VOTable.swift in Sources */,
+				9F01ABB71ABD68BD00EB6373 /* VOTableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

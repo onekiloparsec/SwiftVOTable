@@ -9,7 +9,7 @@
 import Cocoa
 import XCTest
 
-class SwiftVOTableTests: XCTestCase {
+class VOTableTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

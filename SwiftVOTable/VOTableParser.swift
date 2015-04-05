@@ -54,23 +54,25 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
         }
         else {
             if let index = find(self.VOTableClassNames, elementName.lowercaseString) {
+                let voClass = VOTableClasses[index] as NSObject.Type
+
                 let propName = elementName.lowercaseString
                 let propPluralName = propName.plural()
 
-                let voClass = VOTableClasses[index] as NSObject.Type
+                var newElement = voClass()
                 if let hasProperty = currentElement?.hasProperty(propName) {
-                    currentElement?.setValue(voClass(), forKey:propName)
+                    currentElement?.setValue(newElement, forKey:propName)
+                    currentElement = newElement
                 }
                 else if let hasProperty = currentElement?.hasProperty(propPluralName) {
-                    currentElement = voClass()
                     if var props : [NSObject] = currentElement?.valueForKey(propPluralName) as? [NSObject] {
-                        props.append(currentElement!)
+                        props.append(newElement)
                     }
                     else {
-                        currentElement?.setValue([voClass()], forKey:className.lowercaseString)
+                        currentElement?.setValue([newElement], forKey:className.lowercaseString)
                     }
+                    currentElement = newElement
                 }
-                // At this stafe, currentElement is not pointing to the right object...
             }
         }
     }

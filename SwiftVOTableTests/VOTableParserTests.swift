@@ -42,6 +42,15 @@ class VOTableParserTests: XCTestCase {
     func testInitParserWithValidString() {
         let parser = VOTableParser(xmlString: simpleTableXMLString)
         XCTAssertNotNil(parser, "Parser should be initialised.")
+        parser?.parse()
+    }
+    
+    func testParserVOTableElement() {
+        let parser = VOTableParser(xmlString: simpleTableXMLString)
+        parser?.parse()
+        XCTAssertNotNil(parser?.votable, "One must have a VOTable instance.");
+        XCTAssertNotNil(parser?.votable?.attributes, "One must have an attribute instance attached to the table.");
+        XCTAssertTrue(parser?.votable?.version == "1.3", "Version of VOTable is wrong.")
     }
 }
 

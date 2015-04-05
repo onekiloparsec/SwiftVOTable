@@ -196,6 +196,10 @@ enum DataFormat {
 class Data {
     let format: DataFormat!
     let content: AnyObject!
+    init() {
+        self.format = nil
+        self.content = nil
+    }
 }
 
 // "The TABLEDATA element is a way to build the table in pure XML, and has the advantage that XML tools can manipulate
@@ -253,16 +257,17 @@ class Resource {
 class VOTable: NSObject {
     var ID: String?
     var version: String?
-    var resources: [Resource]
+    var attributes: Dictionary<String, String>?
+    var resources: [Resource]?
     var infos: [Info]?
     var params: [Param]?
     var groups: [Group]?
-    
-    convenience init(resources: [Resource]) {
+
+    convenience init(resources: [Resource]?) {
         self.init(resources: resources, infos: nil, params: nil, groups: nil, ID: nil, version: nil)
     }
     
-    init(resources: [Resource], infos: [Info]?, params: [Param]?, groups: [Group]?, ID: String?, version: String?) {
+    init(resources: [Resource]?, infos: [Info]?, params: [Param]?, groups: [Group]?, ID: String?, version: String?) {
         self.resources = resources
         self.infos = infos
         self.params = params

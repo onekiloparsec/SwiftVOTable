@@ -8,29 +8,30 @@
 
 import Foundation
 
-struct VOTableConstants{
-    static let votable = "VOTABLE"
+struct VOTableConstantKeys {
+    static let votableKey = "VOTABLE"
+    static let versionKey = "VERSION"
 }
 
-class VOTableParser: NSObject, NSXMLParserDelegate {
+public class VOTableParser: NSObject, NSXMLParserDelegate {
     
     let xmlString: String!
     var votable: VOTable?
 
     init?(xmlString: String?) {
+        self.xmlString = xmlString
+        self.votable = nil
         super.init()
 
         if xmlString == nil || xmlString!.isEmpty {
             return nil
         }
-
-        self.xmlString = xmlString
     }
     
-    func parse() -> Bool {
+    public func parse() -> Bool {
         votable = nil
         
-        let xmlParser = NSXMLParser(data: xmlString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false))
+        let xmlParser = NSXMLParser(data: xmlString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!)
         xmlParser.delegate = self
         
         if xmlParser.parse() {
@@ -39,15 +40,42 @@ class VOTableParser: NSObject, NSXMLParserDelegate {
         return false
     }
     
-    func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]!) {
-        println("element start: \(elementName)")
+    public func parserDidStartDocument(parser: NSXMLParser) {
+        
+    }
+
+    public func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+        if (elementName.uppercaseString == VOTableConstantKeys.votableKey && votable == nil) {
+            votable = VOTable(resources: nil)
+            
+            if (!attributeDict.isEmpty) {
+                for (keyAny, valueAny) in attributeDict {
+                    let keyString = keyAny as! String
+                    let valueString = valueAny as! String
+                    if (keyString.uppercaseString == VOTableConstantKeys.versionKey) {
+                        votable?.version = valueString
+                    }
+                    else {
+                        if (votable?.attributes == nil) {
+                            votable?.attributes = [:]
+                        }
+                        votable?.attributes?[keyString] = valueString
+                    }
+                }
+            }
+        }
+        println("element start: \(elementName) \(namespaceURI) \(qName) \(attributeDict)")
     }
     
-    func parser(parser: NSXMLParser!, didEndElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!) {
+    public func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         println("element finish: \(elementName)")
     }
     
-    func parser(parser: NSXMLParser!, foundCharacters string: String!) {
+    public func parser(parser: NSXMLParser, foundCharacters string: String?) {
+    }
+    
+    public func parserDidEndDocument(parser: NSXMLParser) {
+        
     }
 }
 

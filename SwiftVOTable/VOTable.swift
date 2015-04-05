@@ -220,36 +220,12 @@ class TableData {
 }
 
 
-// "The TABLE element represents the basic data structure in VOTable; it comprises a description of the table structure 
-// (the metadata) essentially in the form of PARAM and FIELD elements, followed by the values of the described fields 
-// in a DATA element. The TABLE element is always contained in a RESOURCE element."
-class Table {
-    var ID: String?
-    var name: String?
-    var ucd: String?
-    var utype: String?
-    var ref: String?
-    var nrows: String?
-    
-    var description: Description?
 
-    var params: [Param]?
-    var fields: [Field]?
-    var groups: [Group]?
-}
 
-class Resource {
-    var ID: String?
-    var name: String?
-    var type: String?
-    var utype: String?
-    
-    var description: Description?
-    
-    var infos: [Info]?
-    var params: [Param]?
-    var groups: [Group]?
-    var links: [Link]?
+extension String {
+    func plural() -> String {
+        return self + "s"
+    }
 }
 
 // Borrowed from https://www.weheartswift.com/swift-objc-magic/
@@ -258,7 +234,7 @@ extension NSObject {
         var names: [String] = []
         var count: UInt32 = 0
         // Uses the Objc Runtime to get the property list
-        var properties = class_copyPropertyList(classForCoder, &count)
+        var properties = class_copyPropertyList(NSClassFromString(self.className), &count)
         for var i = 0; i < Int(count); ++i {
             let property: objc_property_t = properties[i]
             let name: String = NSString(CString: property_getName(property), encoding: NSUTF8StringEncoding) as! String
@@ -267,6 +243,43 @@ extension NSObject {
         free(properties)
         return names
     }
+    
+    func hasProperty(name: String) -> Bool {
+        return Set(self.propertyNames()).contains(name)
+    }
+}
+
+
+// "The TABLE element represents the basic data structure in VOTable; it comprises a description of the table structure 
+// (the metadata) essentially in the form of PARAM and FIELD elements, followed by the values of the described fields 
+// in a DATA element. The TABLE element is always contained in a RESOURCE element."
+class Table: NSObject {
+    var ID: String?
+    var name: String?
+    var ucd: String?
+    var utype: String?
+    var ref: String?
+    var nrows: String?
+    
+    var voDescription: Description?
+
+    var params: [Param]?
+    var fields: [Field]?
+    var groups: [Group]?
+}
+
+class Resource: NSObject {
+    var ID: String?
+    var name: String?
+    var type: String?
+    var utype: String?
+    
+    var voDescription: Description?
+    
+    var infos: [Info]?
+    var params: [Param]?
+    var groups: [Group]?
+    var links: [Link]?    
 }
 
 // "A VOTable document contains one or more RESOURCE elements, each of these providing a description and the data values 

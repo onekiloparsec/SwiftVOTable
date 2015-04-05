@@ -11,12 +11,14 @@ import Foundation
 struct VOTableConstantKeys {
     static let votableKey = "VOTABLE"
     static let versionKey = "VERSION"
+    static let resourceKey = "RESOURCE"
 }
 
 public class VOTableParser: NSObject, NSXMLParserDelegate {
     
     let xmlString: String!
     var votable: VOTable?
+    private var currentElement: Any?
 
     init?(xmlString: String?) {
         self.xmlString = xmlString
@@ -46,25 +48,9 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
 
     public func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
         if (elementName.uppercaseString == VOTableConstantKeys.votableKey && votable == nil) {
-            votable = VOTable(resources: nil)
-            
-            if (!attributeDict.isEmpty) {
-                for (keyAny, valueAny) in attributeDict {
-                    let keyString = keyAny as! String
-                    let valueString = valueAny as! String
-                    if (keyString.uppercaseString == VOTableConstantKeys.versionKey) {
-                        votable?.version = valueString
-                    }
-                    else {
-                        if (votable?.attributes == nil) {
-                            votable?.attributes = [:]
-                        }
-                        votable?.attributes?[keyString] = valueString
-                    }
-                }
-            }
+            votable = VOTable(rawAttributes: attributeDict)
+            currentElement = votable
         }
-        println("element start: \(elementName) \(namespaceURI) \(qName) \(attributeDict)")
     }
     
     public func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {

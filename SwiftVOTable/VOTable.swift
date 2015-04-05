@@ -252,28 +252,53 @@ class Resource {
     var links: [Link]?
 }
 
+// Borrowed from https://www.weheartswift.com/swift-objc-magic/
+extension NSObject {
+    func propertyNames() -> [String] {
+        var names: [String] = []
+        var count: UInt32 = 0
+        // Uses the Objc Runtime to get the property list
+        var properties = class_copyPropertyList(classForCoder, &count)
+        for var i = 0; i < Int(count); ++i {
+            let property: objc_property_t = properties[i]
+            let name: String = NSString(CString: property_getName(property), encoding: NSUTF8StringEncoding) as! String
+            names.append(name)
+        }
+        free(properties)
+        return names
+    }
+}
+
 // "A VOTable document contains one or more RESOURCE elements, each of these providing a description and the data values 
 // of some logically independent data structure."
 class VOTable: NSObject {
+    var attributes: Dictionary<String, String> = [:]
+
     var ID: String?
     var version: String?
-    var attributes: Dictionary<String, String>?
     var resources: [Resource]?
     var infos: [Info]?
     var params: [Param]?
     var groups: [Group]?
 
-    convenience init(resources: [Resource]?) {
-        self.init(resources: resources, infos: nil, params: nil, groups: nil, ID: nil, version: nil)
-    }
-    
-    init(resources: [Resource]?, infos: [Info]?, params: [Param]?, groups: [Group]?, ID: String?, version: String?) {
-        self.resources = resources
-        self.infos = infos
-        self.params = params
-        self.groups = groups
-        self.ID = ID
-        self.version = version
-        super.init()
-    }
+    convenience init(rawAttributes: [NSObject : AnyObject]?) {
+        self.init()
+        
+        if let rawAttr = rawAttributes {
+            let propNamesSet = Set(self.propertyNames())
+
+            for (keyAny, valueAny) in rawAttr {
+                let keyString = keyAny as! String
+                let valueString = valueAny as! String
+                
+                if propNamesSet.contains(keyString) {
+                    self.setValue(valueString, forKey:keyString)
+                }
+                else {
+                    self.attributes[keyString] = valueString
+                }
+            }
+        }
+
+    }    
 }

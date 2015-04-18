@@ -14,6 +14,7 @@
 		9F35E3091AD03C7C0008D7FF /* VOTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */; };
 		9F35E30B1AD043F50008D7FF /* VOTableParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E30A1AD043F50008D7FF /* VOTableParserTests.swift */; };
 		9F35E30D1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F35E30C1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt */; };
+		9F5943211AE282F400D9D2CA /* SwiftVOTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F01ABA91ABD68BD00EB6373 /* SwiftVOTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F9A5F841AD046C10031F555 /* VOTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABC01ABD717300EB6373 /* VOTable.swift */; };
 		9F9A5F851AD046C30031F555 /* VOTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOTableParser.swift; sourceTree = "<group>"; };
 		9F35E30A1AD043F50008D7FF /* VOTableParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOTableParserTests.swift; sourceTree = "<group>"; };
 		9F35E30C1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OfficialVOTableDocSimpleTable.txt; sourceTree = "<group>"; };
+		9F5943081AE282D800D9D2CA /* SwiftVOTable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftVOTable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F01ABB01ABD68BD00EB6373 /* SwiftVOTable.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F5943041AE282D800D9D2CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +84,7 @@
 			children = (
 				9F01ABA41ABD68BD00EB6373 /* SwiftVOTable.framework */,
 				9F01ABAF1ABD68BD00EB6373 /* SwiftVOTableTests.xctest */,
+				9F5943081AE282D800D9D2CA /* SwiftVOTable.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,12 +139,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9F5943051AE282D800D9D2CA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5943211AE282F400D9D2CA /* SwiftVOTable.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9F01ABA31ABD68BD00EB6373 /* SwiftVOTable */ = {
+		9F01ABA31ABD68BD00EB6373 /* SwiftVOTable-Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F01ABBA1ABD68BD00EB6373 /* Build configuration list for PBXNativeTarget "SwiftVOTable" */;
+			buildConfigurationList = 9F01ABBA1ABD68BD00EB6373 /* Build configuration list for PBXNativeTarget "SwiftVOTable-Mac" */;
 			buildPhases = (
 				9F01AB9F1ABD68BD00EB6373 /* Sources */,
 				9F01ABA01ABD68BD00EB6373 /* Frameworks */,
@@ -145,7 +163,7 @@
 			);
 			dependencies = (
 			);
-			name = SwiftVOTable;
+			name = "SwiftVOTable-Mac";
 			productName = SwiftVOTable;
 			productReference = 9F01ABA41ABD68BD00EB6373 /* SwiftVOTable.framework */;
 			productType = "com.apple.product-type.framework";
@@ -168,6 +186,24 @@
 			productReference = 9F01ABAF1ABD68BD00EB6373 /* SwiftVOTableTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9F5943071AE282D800D9D2CA /* SwiftVOTable-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F59431B1AE282D900D9D2CA /* Build configuration list for PBXNativeTarget "SwiftVOTable-iOS" */;
+			buildPhases = (
+				9F5943031AE282D800D9D2CA /* Sources */,
+				9F5943041AE282D800D9D2CA /* Frameworks */,
+				9F5943051AE282D800D9D2CA /* Headers */,
+				9F5943061AE282D800D9D2CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SwiftVOTable-iOS";
+			productName = "SwiftVOTable-iOS";
+			productReference = 9F5943081AE282D800D9D2CA /* SwiftVOTable.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -183,6 +219,9 @@
 					9F01ABAE1ABD68BD00EB6373 = {
 						CreatedOnToolsVersion = 6.2;
 					};
+					9F5943071AE282D800D9D2CA = {
+						CreatedOnToolsVersion = 6.3;
+					};
 				};
 			};
 			buildConfigurationList = 9F01AB9E1ABD68BD00EB6373 /* Build configuration list for PBXProject "SwiftVOTable" */;
@@ -197,7 +236,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9F01ABA31ABD68BD00EB6373 /* SwiftVOTable */,
+				9F5943071AE282D800D9D2CA /* SwiftVOTable-iOS */,
+				9F01ABA31ABD68BD00EB6373 /* SwiftVOTable-Mac */,
 				9F01ABAE1ABD68BD00EB6373 /* SwiftVOTableTests */,
 			);
 		};
@@ -216,6 +256,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F35E30D1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F5943061AE282D800D9D2CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,12 +289,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9F5943031AE282D800D9D2CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		9F01ABB21ABD68BD00EB6373 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9F01ABA31ABD68BD00EB6373 /* SwiftVOTable */;
+			target = 9F01ABA31ABD68BD00EB6373 /* SwiftVOTable-Mac */;
 			targetProxy = 9F01ABB11ABD68BD00EB6373 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -345,9 +399,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = SwiftVOTable/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwiftVOTable;
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -364,9 +419,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = SwiftVOTable/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwiftVOTable;
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -403,6 +459,52 @@
 			};
 			name = Release;
 		};
+		9F59431C1AE282D900D9D2CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwiftVOTable/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = SwiftVOTable;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9F59431D1AE282D900D9D2CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SwiftVOTable/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = SwiftVOTable;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -415,7 +517,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F01ABBA1ABD68BD00EB6373 /* Build configuration list for PBXNativeTarget "SwiftVOTable" */ = {
+		9F01ABBA1ABD68BD00EB6373 /* Build configuration list for PBXNativeTarget "SwiftVOTable-Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F01ABBB1ABD68BD00EB6373 /* Debug */,
@@ -432,6 +534,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		9F59431B1AE282D900D9D2CA /* Build configuration list for PBXNativeTarget "SwiftVOTable-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F59431C1AE282D900D9D2CA /* Debug */,
+				9F59431D1AE282D900D9D2CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

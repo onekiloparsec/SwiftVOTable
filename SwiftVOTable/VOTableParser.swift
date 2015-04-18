@@ -21,7 +21,7 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
         self.votable = nil
         
         self.VOTableClasses = [Resource.self, Table.self]
-        self.VOTableClassNames = self.VOTableClasses.map({ (NSStringFromClass($0) as String).lowercaseString })
+        self.VOTableClassNames = self.VOTableClasses.map({ (NSStringFromClass($0).componentsSeparatedByString(".").last! as String).lowercaseString })
         
         super.init()
 
@@ -59,17 +59,19 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
                 let propName = elementName.lowercaseString
                 let propPluralName = propName.plural()
 
+                println("element start: \(propName)")
+
                 var newElement = voClass()
-                if let hasProperty = currentElement?.hasProperty(propName) {
-                    currentElement?.setValue(newElement, forKey:propName)
+                if (currentElement!.hasProperty(propName) == true) {
+                    currentElement!.setValue(newElement, forKey:propName)
                     currentElement = newElement
                 }
-                else if let hasProperty = currentElement?.hasProperty(propPluralName) {
-                    if var props : [NSObject] = currentElement?.valueForKey(propPluralName) as? [NSObject] {
+                else if (currentElement!.hasProperty(propPluralName) == true) {
+                    if var props : [NSObject] = currentElement!.valueForKey(propPluralName) as? [NSObject] {
                         props.append(newElement)
                     }
                     else {
-                        currentElement?.setValue([newElement], forKey:className.lowercaseString)
+                        currentElement!.setValue([newElement], forKey:propPluralName)
                     }
                     currentElement = newElement
                 }
@@ -82,6 +84,7 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
     }
     
     public func parser(parser: NSXMLParser, foundCharacters string: String?) {
+        println("current element (\(currentElement)) -->> \(string)")
     }
     
     public func parserDidEndDocument(parser: NSXMLParser) {

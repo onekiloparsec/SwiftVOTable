@@ -244,7 +244,7 @@ extension NSObject {
         return names
     }
     
-    func hasProperty(name: String) -> Bool {
+    func hasProperty(name: String) -> Bool! {
         return Set(self.propertyNames()).contains(name)
     }
 }

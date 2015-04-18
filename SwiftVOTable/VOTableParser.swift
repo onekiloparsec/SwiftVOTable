@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import Runes
 
 public class VOTableParser: NSObject, NSXMLParserDelegate {
     
     let xmlString: String!
-    var votable: VOTable?
+    public var votable: VOTable?
     private var currentElement: NSObject?
     private let VOTableClasses: [NSObject.Type]
     private let VOTableClassNames: [NSString]

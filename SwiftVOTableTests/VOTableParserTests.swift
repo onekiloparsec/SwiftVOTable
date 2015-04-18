@@ -6,7 +6,9 @@
 //  Copyright (c) 2015 onekiloparsec. All rights reserved.
 //
 
+import UIKit
 import XCTest
+import Runes
 import SwiftVOTable
 
 class VOTableParserTests: XCTestCase {

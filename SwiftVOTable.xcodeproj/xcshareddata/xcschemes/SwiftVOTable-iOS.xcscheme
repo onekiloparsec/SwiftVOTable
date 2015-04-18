@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9F5943071AE282D800D9D2CA"
-               BuildableName = "SwiftVOTable-iOS.framework"
+               BuildableName = "SwiftVOTable.framework"
                BlueprintName = "SwiftVOTable-iOS"
                ReferencedContainer = "container:SwiftVOTable.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9F5943071AE282D800D9D2CA"
-            BuildableName = "SwiftVOTable-iOS.framework"
+            BuildableName = "SwiftVOTable.framework"
             BlueprintName = "SwiftVOTable-iOS"
             ReferencedContainer = "container:SwiftVOTable.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9F5943071AE282D800D9D2CA"
-            BuildableName = "SwiftVOTable-iOS.framework"
+            BuildableName = "SwiftVOTable.framework"
             BlueprintName = "SwiftVOTable-iOS"
             ReferencedContainer = "container:SwiftVOTable.xcodeproj">
          </BuildableReference>
@@ -94,7 +94,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9F5943071AE282D800D9D2CA"
-            BuildableName = "SwiftVOTable-iOS.framework"
+            BuildableName = "SwiftVOTable.framework"
             BlueprintName = "SwiftVOTable-iOS"
             ReferencedContainer = "container:SwiftVOTable.xcodeproj">
          </BuildableReference>

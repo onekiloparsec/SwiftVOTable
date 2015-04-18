@@ -8,34 +8,50 @@
 
 /* Begin PBXBuildFile section */
 		9F01ABAA1ABD68BD00EB6373 /* SwiftVOTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F01ABA91ABD68BD00EB6373 /* SwiftVOTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9F01ABB01ABD68BD00EB6373 /* SwiftVOTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F01ABA41ABD68BD00EB6373 /* SwiftVOTable.framework */; };
-		9F01ABB71ABD68BD00EB6373 /* VOTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABB61ABD68BD00EB6373 /* VOTableTests.swift */; };
 		9F01ABC11ABD717300EB6373 /* VOTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABC01ABD717300EB6373 /* VOTable.swift */; };
 		9F35E3091AD03C7C0008D7FF /* VOTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */; };
-		9F35E30B1AD043F50008D7FF /* VOTableParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E30A1AD043F50008D7FF /* VOTableParserTests.swift */; };
-		9F35E30D1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F35E30C1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt */; };
 		9F5943211AE282F400D9D2CA /* SwiftVOTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F01ABA91ABD68BD00EB6373 /* SwiftVOTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F5943241AE2841600D9D2CA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5943231AE2841600D9D2CA /* Runes.framework */; };
 		9F5943261AE2842300D9D2CA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5943251AE2842300D9D2CA /* Runes.framework */; };
-		9F9A5F841AD046C10031F555 /* VOTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABC01ABD717300EB6373 /* VOTable.swift */; };
-		9F9A5F851AD046C30031F555 /* VOTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */; };
+		9F5943341AE286C200D9D2CA /* SwiftVOTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5943081AE282D800D9D2CA /* SwiftVOTable.framework */; };
+		9F59433A1AE287C000D9D2CA /* VOTableParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E30A1AD043F50008D7FF /* VOTableParserTests.swift */; };
+		9F59433B1AE287C400D9D2CA /* VOTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABB61ABD68BD00EB6373 /* VOTableTests.swift */; };
+		9F59433C1AE2896D00D9D2CA /* VOTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABC01ABD717300EB6373 /* VOTable.swift */; };
+		9F59433E1AE2897000D9D2CA /* VOTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */; };
+		9F59433F1AE2897100D9D2CA /* VOTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */; };
+		9F5943401AE289AB00D9D2CA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5943231AE2841600D9D2CA /* Runes.framework */; };
+		9F5943421AE28EC200D9D2CA /* Runes.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F5943231AE2841600D9D2CA /* Runes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9F5943441AE28ECA00D9D2CA /* SwiftVOTable.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F5943081AE282D800D9D2CA /* SwiftVOTable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9F01ABB11ABD68BD00EB6373 /* PBXContainerItemProxy */ = {
+		9F5943351AE286C200D9D2CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F01AB9B1ABD68BD00EB6373 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9F01ABA31ABD68BD00EB6373;
-			remoteInfo = SwiftVOTable;
+			remoteGlobalIDString = 9F5943071AE282D800D9D2CA;
+			remoteInfo = "SwiftVOTable-iOS";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9F5943411AE28E7300D9D2CA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9F5943421AE28EC200D9D2CA /* Runes.framework in CopyFiles */,
+				9F5943441AE28ECA00D9D2CA /* SwiftVOTable.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9F01ABA41ABD68BD00EB6373 /* SwiftVOTable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftVOTable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F01ABA81ABD68BD00EB6373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F01ABA91ABD68BD00EB6373 /* SwiftVOTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftVOTable.h; sourceTree = "<group>"; };
-		9F01ABAF1ABD68BD00EB6373 /* SwiftVOTableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftVOTableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F01ABB51ABD68BD00EB6373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F01ABB61ABD68BD00EB6373 /* VOTableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOTableTests.swift; sourceTree = "<group>"; };
 		9F01ABC01ABD717300EB6373 /* VOTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOTable.swift; sourceTree = "<group>"; };
@@ -46,6 +62,7 @@
 		9F5943081AE282D800D9D2CA /* SwiftVOTable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftVOTable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F5943231AE2841600D9D2CA /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/iOS/Runes.framework; sourceTree = "<group>"; };
 		9F5943251AE2842300D9D2CA /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/Mac/Runes.framework; sourceTree = "<group>"; };
+		9F59432E1AE286C200D9D2CA /* SwiftVOTableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftVOTableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,19 +74,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9F01ABAC1ABD68BD00EB6373 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F01ABB01ABD68BD00EB6373 /* SwiftVOTable.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9F5943041AE282D800D9D2CA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9F5943241AE2841600D9D2CA /* Runes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F59432B1AE286C200D9D2CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5943401AE289AB00D9D2CA /* Runes.framework in Frameworks */,
+				9F5943341AE286C200D9D2CA /* SwiftVOTable.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,8 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				9F01ABA41ABD68BD00EB6373 /* SwiftVOTable.framework */,
-				9F01ABAF1ABD68BD00EB6373 /* SwiftVOTableTests.xctest */,
 				9F5943081AE282D800D9D2CA /* SwiftVOTable.framework */,
+				9F59432E1AE286C200D9D2CA /* SwiftVOTableTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,24 +202,6 @@
 			productReference = 9F01ABA41ABD68BD00EB6373 /* SwiftVOTable.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		9F01ABAE1ABD68BD00EB6373 /* SwiftVOTableTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9F01ABBD1ABD68BD00EB6373 /* Build configuration list for PBXNativeTarget "SwiftVOTableTests" */;
-			buildPhases = (
-				9F01ABAB1ABD68BD00EB6373 /* Sources */,
-				9F01ABAC1ABD68BD00EB6373 /* Frameworks */,
-				9F01ABAD1ABD68BD00EB6373 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9F01ABB21ABD68BD00EB6373 /* PBXTargetDependency */,
-			);
-			name = SwiftVOTableTests;
-			productName = SwiftVOTableTests;
-			productReference = 9F01ABAF1ABD68BD00EB6373 /* SwiftVOTableTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		9F5943071AE282D800D9D2CA /* SwiftVOTable-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F59431B1AE282D900D9D2CA /* Build configuration list for PBXNativeTarget "SwiftVOTable-iOS" */;
@@ -220,6 +220,25 @@
 			productReference = 9F5943081AE282D800D9D2CA /* SwiftVOTable.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		9F59432D1AE286C200D9D2CA /* SwiftVOTableTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F5943371AE286C200D9D2CA /* Build configuration list for PBXNativeTarget "SwiftVOTableTests" */;
+			buildPhases = (
+				9F59432A1AE286C200D9D2CA /* Sources */,
+				9F59432B1AE286C200D9D2CA /* Frameworks */,
+				9F59432C1AE286C200D9D2CA /* Resources */,
+				9F5943411AE28E7300D9D2CA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9F5943361AE286C200D9D2CA /* PBXTargetDependency */,
+			);
+			name = SwiftVOTableTests;
+			productName = SwiftVOTableTests;
+			productReference = 9F59432E1AE286C200D9D2CA /* SwiftVOTableTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -232,10 +251,10 @@
 					9F01ABA31ABD68BD00EB6373 = {
 						CreatedOnToolsVersion = 6.2;
 					};
-					9F01ABAE1ABD68BD00EB6373 = {
-						CreatedOnToolsVersion = 6.2;
-					};
 					9F5943071AE282D800D9D2CA = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					9F59432D1AE286C200D9D2CA = {
 						CreatedOnToolsVersion = 6.3;
 					};
 				};
@@ -253,8 +272,8 @@
 			projectRoot = "";
 			targets = (
 				9F5943071AE282D800D9D2CA /* SwiftVOTable-iOS */,
+				9F59432D1AE286C200D9D2CA /* SwiftVOTableTests */,
 				9F01ABA31ABD68BD00EB6373 /* SwiftVOTable-Mac */,
-				9F01ABAE1ABD68BD00EB6373 /* SwiftVOTableTests */,
 			);
 		};
 /* End PBXProject section */
@@ -267,15 +286,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9F01ABAD1ABD68BD00EB6373 /* Resources */ = {
+		9F5943061AE282D800D9D2CA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F35E30D1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9F5943061AE282D800D9D2CA /* Resources */ = {
+		9F59432C1AE286C200D9D2CA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -294,31 +312,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9F01ABAB1ABD68BD00EB6373 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F9A5F851AD046C30031F555 /* VOTableParser.swift in Sources */,
-				9F35E30B1AD043F50008D7FF /* VOTableParserTests.swift in Sources */,
-				9F9A5F841AD046C10031F555 /* VOTable.swift in Sources */,
-				9F01ABB71ABD68BD00EB6373 /* VOTableTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9F5943031AE282D800D9D2CA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F59433E1AE2897000D9D2CA /* VOTableParser.swift in Sources */,
+				9F59433C1AE2896D00D9D2CA /* VOTable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F59432A1AE286C200D9D2CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F59433F1AE2897100D9D2CA /* VOTableParser.swift in Sources */,
+				9F59433A1AE287C000D9D2CA /* VOTableParserTests.swift in Sources */,
+				9F59433B1AE287C400D9D2CA /* VOTableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9F01ABB21ABD68BD00EB6373 /* PBXTargetDependency */ = {
+		9F5943361AE286C200D9D2CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9F01ABA31ABD68BD00EB6373 /* SwiftVOTable-Mac */;
-			targetProxy = 9F01ABB11ABD68BD00EB6373 /* PBXContainerItemProxy */;
+			target = 9F5943071AE282D800D9D2CA /* SwiftVOTable-iOS */;
+			targetProxy = 9F5943351AE286C200D9D2CA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -340,7 +359,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -357,10 +375,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -384,7 +402,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -396,9 +413,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -451,43 +469,9 @@
 			};
 			name = Release;
 		};
-		9F01ABBE1ABD68BD00EB6373 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SwiftVOTableTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		9F01ABBF1ABD68BD00EB6373 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SwiftVOTableTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		9F59431C1AE282D900D9D2CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -496,26 +480,16 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = SwiftVOTable/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = SwiftVOTable;
-				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		9F59431D1AE282D900D9D2CA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -524,16 +498,42 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = SwiftVOTable/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = SwiftVOTable;
-				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9F5943381AE286C200D9D2CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwiftVOTableTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9F5943391AE286C200D9D2CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = SwiftVOTableTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -558,20 +558,19 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F01ABBD1ABD68BD00EB6373 /* Build configuration list for PBXNativeTarget "SwiftVOTableTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9F01ABBE1ABD68BD00EB6373 /* Debug */,
-				9F01ABBF1ABD68BD00EB6373 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		9F59431B1AE282D900D9D2CA /* Build configuration list for PBXNativeTarget "SwiftVOTable-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F59431C1AE282D900D9D2CA /* Debug */,
 				9F59431D1AE282D900D9D2CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9F5943371AE286C200D9D2CA /* Build configuration list for PBXNativeTarget "SwiftVOTableTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F5943381AE286C200D9D2CA /* Debug */,
+				9F5943391AE286C200D9D2CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

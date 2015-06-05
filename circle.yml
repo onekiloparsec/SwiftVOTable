@@ -1,5 +1,10 @@
+dependencies:
+  pre:
+    - brew install carthage
+    - carthage update
+
 machine:
   environment:
-    XCODE_SCHEME: SwiftVOTable
+    XCODE_SCHEME: SwiftVOTable-iOS
 
 

@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9F01ABAE1ABD68BD00EB6373"
+               BlueprintIdentifier = "9F59432D1AE286C200D9D2CA"
                BuildableName = "SwiftVOTableTests.xctest"
                BlueprintName = "SwiftVOTableTests"
                ReferencedContainer = "container:SwiftVOTable.xcodeproj">

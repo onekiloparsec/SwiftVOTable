@@ -11,13 +11,13 @@ import Runes
 
 public class VOTableParser: NSObject, NSXMLParserDelegate {
     
-    let xmlString: String!
+    public let xmlString: String!
     public var votable: VOTable?
     private var currentElement: NSObject?
     private let VOTableClasses: [NSObject.Type]
     private let VOTableClassNames: [NSString]
 
-    init?(xmlString: String?) {
+    public init?(xmlString: String?) {
         self.xmlString = xmlString
         self.votable = nil
         
@@ -32,8 +32,8 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
     }
     
     public func parse() -> Bool {
-        votable = nil
-        currentElement = nil
+        self.votable = nil
+        self.currentElement = nil
 
         let xmlParser = NSXMLParser(data: xmlString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!)
         xmlParser.delegate = self
@@ -50,7 +50,7 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
 
     public func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
         if (elementName.uppercaseString == "VOTABLE" && votable == nil) {
-            votable = VOTable(rawAttributes: attributeDict)
+            self.votable = VOTable(attributeDict)
             currentElement = votable
         }
         else {

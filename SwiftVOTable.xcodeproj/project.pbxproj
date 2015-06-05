@@ -10,6 +10,7 @@
 		9F01ABAA1ABD68BD00EB6373 /* SwiftVOTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F01ABA91ABD68BD00EB6373 /* SwiftVOTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F01ABC11ABD717300EB6373 /* VOTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABC01ABD717300EB6373 /* VOTable.swift */; };
 		9F35E3091AD03C7C0008D7FF /* VOTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */; };
+		9F4E2ED91B21FED50055072A /* OfficialVOTableDocSimpleTable.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F35E30C1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt */; };
 		9F5943211AE282F400D9D2CA /* SwiftVOTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F01ABA91ABD68BD00EB6373 /* SwiftVOTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F5943241AE2841600D9D2CA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5943231AE2841600D9D2CA /* Runes.framework */; };
 		9F5943261AE2842300D9D2CA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5943251AE2842300D9D2CA /* Runes.framework */; };
@@ -18,7 +19,6 @@
 		9F59433B1AE287C400D9D2CA /* VOTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABB61ABD68BD00EB6373 /* VOTableTests.swift */; };
 		9F59433C1AE2896D00D9D2CA /* VOTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABC01ABD717300EB6373 /* VOTable.swift */; };
 		9F59433E1AE2897000D9D2CA /* VOTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */; };
-		9F59433F1AE2897100D9D2CA /* VOTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */; };
 		9F5943401AE289AB00D9D2CA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5943231AE2841600D9D2CA /* Runes.framework */; };
 		9F5943421AE28EC200D9D2CA /* Runes.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F5943231AE2841600D9D2CA /* Runes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9F5943441AE28ECA00D9D2CA /* SwiftVOTable.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F5943081AE282D800D9D2CA /* SwiftVOTable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -297,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F4E2ED91B21FED50055072A /* OfficialVOTableDocSimpleTable.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +326,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F59433F1AE2897100D9D2CA /* VOTableParser.swift in Sources */,
 				9F59433A1AE287C000D9D2CA /* VOTableParserTests.swift in Sources */,
 				9F59433B1AE287C400D9D2CA /* VOTableTests.swift in Sources */,
 			);
@@ -565,6 +565,7 @@
 				9F59431D1AE282D900D9D2CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9F5943371AE286C200D9D2CA /* Build configuration list for PBXNativeTarget "SwiftVOTableTests" */ = {
 			isa = XCConfigurationList;
@@ -573,6 +574,7 @@
 				9F5943391AE286C200D9D2CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

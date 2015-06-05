@@ -283,16 +283,16 @@ public class Resource: NSObject {
 // "A VOTable document contains one or more RESOURCE elements, each of these providing a description and the data values 
 // of some logically independent data structure."
 public class VOTable: NSObject {
-    var attributes: Dictionary<String, String> = [:]
+    public var attributes: Dictionary<String, String> = [:]
 
-    var ID: String?
-    var version: String?
-    var resources: [Resource]?
-    var infos: [Info]?
-    var params: [Param]?
-    var groups: [Group]?
+    public var ID: String?
+    public var version: String?
+    public var resources: [Resource]?
+    public var infos: [Info]?
+    public var params: [Param]?
+    public var groups: [Group]?
 
-    convenience init(rawAttributes: [NSObject : AnyObject]?) {
+    convenience init(_ rawAttributes: [NSObject : AnyObject]?) {
         self.init()
         
         if let rawAttr = rawAttributes {
@@ -310,6 +310,5 @@ public class VOTable: NSObject {
                 }
             }
         }
-
-    }    
+    }
 }

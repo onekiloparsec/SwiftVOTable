@@ -49,6 +49,8 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
     }
 
     public func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+        println("element start: \(elementName)")
+
         if (elementName.uppercaseString == "VOTABLE" && votable == nil) {
             self.votable = VOTable(attributeDict)
             currentElement = votable
@@ -57,24 +59,29 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
             if let index = find(self.VOTableClassNames, elementName.lowercaseString) {
                 let voClass = VOTableClasses[index] as NSObject.Type
 
-                let propName = elementName.lowercaseString
-                let propPluralName = propName.plural()
-
-                println("element start: \(propName)")
+                let propertyName = elementName.lowercaseString
+                let propertyPluralName = propertyName.plural()
 
                 var newElement = voClass()
-                if (currentElement!.hasProperty(propName) == true) {
-                    currentElement!.setValue(newElement, forKey:propName)
+                if (currentElement!.hasProperty(propertyName) == true) {
+                    // Current element has property of that name. Set the property, and move the 'currentElement' cursor to the new one.
+                    currentElement!.setValue(newElement, forKey:propertyName)
                     currentElement = newElement
                 }
-                else if (currentElement!.hasProperty(propPluralName) == true) {
-                    if var props : [NSObject] = currentElement!.valueForKey(propPluralName) as? [NSObject] {
+                else if (currentElement!.hasProperty(propertyPluralName) == true) {
+                    // Current element has a plural property of that name.
+                    if var props : [NSObject] = currentElement!.valueForKey(propertyPluralName) as? [NSObject] {
+                        // We already have a collection type for that property. Append the new element to it.
                         props.append(newElement)
                     }
                     else {
-                        currentElement!.setValue([newElement], forKey:propPluralName)
+                        // Set the property to a list containing that element.
+                        currentElement!.setValue([newElement], forKey:propertyPluralName)
                     }
                     currentElement = newElement
+                }
+                else {
+                    // Deal with error.
                 }
             }
         }

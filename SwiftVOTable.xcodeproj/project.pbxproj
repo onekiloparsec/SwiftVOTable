@@ -11,6 +11,8 @@
 		9F01ABC11ABD717300EB6373 /* VOTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ABC01ABD717300EB6373 /* VOTable.swift */; };
 		9F35E3091AD03C7C0008D7FF /* VOTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */; };
 		9F4E2ED91B21FED50055072A /* OfficialVOTableDocSimpleTable.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F35E30C1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt */; };
+		9F4E2EDB1B22FE100055072A /* VOTableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E2EDA1B22FE100055072A /* VOTableConstants.swift */; };
+		9F4E2EDC1B22FE100055072A /* VOTableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E2EDA1B22FE100055072A /* VOTableConstants.swift */; };
 		9F5943211AE282F400D9D2CA /* SwiftVOTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F01ABA91ABD68BD00EB6373 /* SwiftVOTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F5943241AE2841600D9D2CA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5943231AE2841600D9D2CA /* Runes.framework */; };
 		9F5943261AE2842300D9D2CA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5943251AE2842300D9D2CA /* Runes.framework */; };
@@ -59,6 +61,7 @@
 		9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOTableParser.swift; sourceTree = "<group>"; };
 		9F35E30A1AD043F50008D7FF /* VOTableParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOTableParserTests.swift; sourceTree = "<group>"; };
 		9F35E30C1AD0447D0008D7FF /* OfficialVOTableDocSimpleTable.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OfficialVOTableDocSimpleTable.txt; sourceTree = "<group>"; };
+		9F4E2EDA1B22FE100055072A /* VOTableConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOTableConstants.swift; sourceTree = "<group>"; };
 		9F5943081AE282D800D9D2CA /* SwiftVOTable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftVOTable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F5943231AE2841600D9D2CA /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/iOS/Runes.framework; sourceTree = "<group>"; };
 		9F5943251AE2842300D9D2CA /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/Mac/Runes.framework; sourceTree = "<group>"; };
@@ -120,6 +123,7 @@
 				9F01ABA91ABD68BD00EB6373 /* SwiftVOTable.h */,
 				9F01ABC01ABD717300EB6373 /* VOTable.swift */,
 				9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */,
+				9F4E2EDA1B22FE100055072A /* VOTableConstants.swift */,
 				9F01ABA71ABD68BD00EB6373 /* Supporting Files */,
 			);
 			path = SwiftVOTable;
@@ -309,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F35E3091AD03C7C0008D7FF /* VOTableParser.swift in Sources */,
+				9F4E2EDC1B22FE100055072A /* VOTableConstants.swift in Sources */,
 				9F01ABC11ABD717300EB6373 /* VOTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F59433E1AE2897000D9D2CA /* VOTableParser.swift in Sources */,
+				9F4E2EDB1B22FE100055072A /* VOTableConstants.swift in Sources */,
 				9F59433C1AE2896D00D9D2CA /* VOTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

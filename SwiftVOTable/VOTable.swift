@@ -15,22 +15,61 @@
 
 import Foundation
 
-public enum Primitive {
-    case boolean
-    case bit
-    case unsignedByte
-    case short
-    case int
-    case long
-    case char
-    case unicodeChar
-    case float
-    case double
-    case floatComplex
-    case doubleComplex
+protocol VOTableElementSpecification {
+    func voTableElementValueName() -> String
+    func voTableElementChildrenName() -> String
 }
 
-public typealias Description = String
+protocol VOTableExport {
+    func voTableString() -> String
+}
+
+extension NSObject : VOTableExport {
+
+    // Borrowed from https://www.weheartswift.com/swift-objc-magic/
+    func propertyNames() -> [String] {
+        var names: [String] = []
+        var count: UInt32 = 0
+        // Uses the Objc Runtime to get the property list
+        var properties = class_copyPropertyList(self.dynamicType, &count)
+        for var i = 0; i < Int(count); ++i {
+            let property: objc_property_t = properties[i]
+            let name: String = NSString(CString: property_getName(property), encoding: NSUTF8StringEncoding) as! String
+            names.append(name)
+        }
+        free(properties)
+        return names
+    }
+    
+    func hasProperty(name: String) -> Bool! {
+        return Set(self.propertyNames()).contains(name)
+    }
+    
+    func voTableString() -> String {
+        if let object = self as? VOTableElementSpecification {
+            var xml = String()
+            
+            // Element opening
+            xml += "<\(NSStringFromClass(self.dynamicType))"
+            
+            // Atttributes
+            var propertyNamesSet: Set<String> = Set(self.propertyNames())
+            propertyNamesSet.remove(object.voTableElementValueName())
+            propertyNamesSet.remove(object.voTableElementChildrenName())
+            
+            for propertyName: String in Array(propertyNamesSet) {
+                xml += "\(propertyName)=\(self.valueForKey(propertyName))"
+            }
+            xml += " >"
+            
+            // value or children
+            
+            // Element closing
+            xml += "<\(NSStringFromClass(self.dynamicType)) />\n"
+        }
+        return ""
+    }
+}
 
 // "The VALUES element may contain MIN and MAX elements, and it may contain OPTION elements; the latter may itself
 // contain more OPTION elements, so that a hierarchy of keyword-values pairs can be associated with each field."
@@ -170,7 +209,7 @@ public class Stream {
     var rights: String?
 }
 
-// Overriding setter to force INFO to always gace datatype=char, and arraysize="*"
+// Overriding setter to force INFO to always have datatype=char, and arraysize="*"
 public class Info: Param {
     override var datatype: Primitive! {
         get { return .char }
@@ -226,29 +265,7 @@ extension String {
     }
 }
 
-// Borrowed from https://www.weheartswift.com/swift-objc-magic/
-extension NSObject {
-    func propertyNames() -> [String] {
-        var names: [String] = []
-        var count: UInt32 = 0
-        // Uses the Objc Runtime to get the property list
-        var properties = class_copyPropertyList(self.dynamicType, &count)
-        for var i = 0; i < Int(count); ++i {
-            let property: objc_property_t = properties[i]
-            let name: String = NSString(CString: property_getName(property), encoding: NSUTF8StringEncoding) as! String
-            names.append(name)
-        }
-        free(properties)
-        return names
-    }
-    
-    func hasProperty(name: String) -> Bool! {
-        return Set(self.propertyNames()).contains(name)
-    }
-}
-
-
-// "The TABLE element represents the basic data structure in VOTable; it comprises a description of the table structure 
+// "The TABLE element represents the basic data structure in VOTable; it comprises a description of the table structure
 // (the metadata) essentially in the form of PARAM and FIELD elements, followed by the values of the described fields 
 // in a DATA element. The TABLE element is always contained in a RESOURCE element."
 public class Table: NSObject {

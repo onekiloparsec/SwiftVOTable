@@ -13,15 +13,15 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
     
     public let xmlString: String!
     public var votable: VOTable?
-    private var currentElement: NSObject?
-    private let VOTableClasses: [NSObject.Type]
+    private var currentElement: VOTableElement?
+    private let VOTableClasses: [VOTableElement.Type]
     private let VOTableClassNames: [NSString]
 
     public init?(xmlString: String?) {
         self.xmlString = xmlString
         self.votable = nil
         
-        self.VOTableClasses = [Resource.self, Table.self]
+        self.VOTableClasses = [VOTable.self, Resource.self, Table.self]
         self.VOTableClassNames = self.VOTableClasses.map({ (NSStringFromClass($0).componentsSeparatedByString(".").last! as String).lowercaseString })
         
         super.init()
@@ -51,39 +51,20 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
     public func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
         println("element start: \(elementName)")
 
-        if (elementName.uppercaseString == "VOTABLE" && votable == nil) {
-            self.votable = VOTable(attributeDict)
-            currentElement = votable
-        }
-        else {
-            if let index = find(self.VOTableClassNames, elementName.lowercaseString) {
-                let voClass = VOTableClasses[index] as NSObject.Type
+        if let index = find(self.VOTableClassNames, elementName.lowercaseString) {
+            let voClass = VOTableClasses[index] as VOTableElement.Type
 
-                let propertyName = elementName.lowercaseString
-                let propertyPluralName = propertyName.plural()
-
-                var newElement = voClass()
-                if (currentElement!.hasProperty(propertyName) == true) {
-                    // Current element has property of that name. Set the property, and move the 'currentElement' cursor to the new one.
-                    currentElement!.setValue(newElement, forKey:propertyName)
-                    currentElement = newElement
-                }
-                else if (currentElement!.hasProperty(propertyPluralName) == true) {
-                    // Current element has a plural property of that name.
-                    if var props : [NSObject] = currentElement!.valueForKey(propertyPluralName) as? [NSObject] {
-                        // We already have a collection type for that property. Append the new element to it.
-                        props.append(newElement)
-                    }
-                    else {
-                        // Set the property to a list containing that element.
-                        currentElement!.setValue([newElement], forKey:propertyPluralName)
-                    }
-                    currentElement = newElement
-                }
-                else {
-                    // Deal with error.
-                }
+            var newElement = voClass(attributeDict)
+            
+            if (index == 0) {
+                self.votable = newElement as? VOTable;
             }
+            
+            if (currentElement != nil) {
+                currentElement?.setNewElement(newElement, forPropertyName:elementName.lowercaseString);
+            }
+
+            currentElement = newElement
         }
     }
     

@@ -20,11 +20,7 @@ protocol VOTableElementSpecification {
     func voTableElementChildrenName() -> String
 }
 
-protocol VOTableExport {
-    func voTableString() -> String
-}
-
-extension NSObject : VOTableExport {
+extension NSObject {
 
     // Borrowed from https://www.weheartswift.com/swift-objc-magic/
     func propertyNames() -> [String] {
@@ -44,8 +40,55 @@ extension NSObject : VOTableExport {
     func hasProperty(name: String) -> Bool! {
         return Set(self.propertyNames()).contains(name)
     }
+}
+
+public class VOTableElement: NSObject {
+    public var customAttributes: Dictionary<String, String> = [:]
+
+    required public init(_ rawAttributes: [NSObject : AnyObject]?) {
+        super.init()
+        
+        if let rawAttr = rawAttributes {
+            let propNamesSet = Set(self.propertyNames())
+            
+            for (keyAny, valueAny) in rawAttr {
+                let keyString = keyAny as! String
+                let valueString = valueAny as! String
+                
+                if propNamesSet.contains(keyString) {
+                    self.setValue(valueString, forKey:keyString)
+                }
+                else {
+                    self.customAttributes[keyString] = valueString
+                }
+            }
+        }
+    }
     
-    func voTableString() -> String {
+    public func setNewElement(newElement: VOTableElement, forPropertyName propertyName: String) {
+        let propertyPluralName = propertyName.plural()
+        
+        if (self.hasProperty(propertyName) == true) {
+            // Current element has property of that name. Set the property, and move the 'currentElement' cursor to the new one.
+            self.setValue(newElement, forKey:propertyName)
+        }
+        else if (self.hasProperty(propertyPluralName) == true) {
+            // Current element has a plural property of that name.
+            if var props : [NSObject] = self.valueForKey(propertyPluralName) as? [NSObject] {
+                // We already have a collection type for that property. Append the new element to it.
+                props.append(newElement)
+            }
+            else {
+                // Set the property to a list containing that element.
+                self.setValue([newElement], forKey:propertyPluralName)
+            }
+        }
+        else {
+            // Deal with error.
+        }
+    }
+    
+    public func voTableString() -> String {
         if let object = self as? VOTableElementSpecification {
             var xml = String()
             
@@ -268,7 +311,7 @@ extension String {
 // "The TABLE element represents the basic data structure in VOTable; it comprises a description of the table structure
 // (the metadata) essentially in the form of PARAM and FIELD elements, followed by the values of the described fields 
 // in a DATA element. The TABLE element is always contained in a RESOURCE element."
-public class Table: NSObject {
+public class Table: VOTableElement {
     var ID: String?
     var name: String?
     var ucd: String?
@@ -283,49 +326,27 @@ public class Table: NSObject {
     var groups: [Group]?
 }
 
-public class Resource: NSObject {
-    var ID: String?
-    var name: String?
-    var type: String?
-    var utype: String?
+public class Resource: VOTableElement {
+    public var ID: String?
+    public var name: String?
+    public var type: String?
+    public var utype: String?
     
-    var voDescription: Description?
+    public var voDescription: Description?
     
-    var infos: [Info]?
-    var params: [Param]?
-    var groups: [Group]?
-    var links: [Link]?    
+    public var infos: [Info]?
+    public var params: [Param]?
+    public var groups: [Group]?
+    public var links: [Link]?    
 }
 
 // "A VOTable document contains one or more RESOURCE elements, each of these providing a description and the data values 
 // of some logically independent data structure."
-public class VOTable: NSObject {
-    public var attributes: Dictionary<String, String> = [:]
-
+public class VOTable: VOTableElement {
     public var ID: String?
     public var version: String?
     public var resources: [Resource]?
     public var infos: [Info]?
     public var params: [Param]?
     public var groups: [Group]?
-
-    convenience init(_ rawAttributes: [NSObject : AnyObject]?) {
-        self.init()
-        
-        if let rawAttr = rawAttributes {
-            let propNamesSet = Set(self.propertyNames())
-
-            for (keyAny, valueAny) in rawAttr {
-                let keyString = keyAny as! String
-                let valueString = valueAny as! String
-                
-                if propNamesSet.contains(keyString) {
-                    self.setValue(valueString, forKey:keyString)
-                }
-                else {
-                    self.attributes[keyString] = valueString
-                }
-            }
-        }
-    }
 }

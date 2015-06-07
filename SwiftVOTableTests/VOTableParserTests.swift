@@ -21,12 +21,9 @@ class VOTableParserTests: XCTestCase {
         println(NSBundle.mainBundle().resourcePath)
         let path = NSBundle(forClass: self.dynamicType).pathForResource("OfficialVOTableDocSimpleTable", ofType: "txt")
         simpleTableXMLString = String(contentsOfFile: path!, encoding: NSUTF8StringEncoding, error: nil)!
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
 
@@ -43,15 +40,24 @@ class VOTableParserTests: XCTestCase {
     func testInitParserWithValidString() {
         let parser = VOTableParser(xmlString: simpleTableXMLString)
         XCTAssertNotNil(parser, "Parser should be initialised.")
-        parser?.parse()
     }
     
     func testParserVOTableElement() {
         let parser = VOTableParser(xmlString: simpleTableXMLString)
         parser?.parse()
         XCTAssertNotNil(parser?.votable, "One must have a VOTable instance.");
-        XCTAssertNotNil(parser?.votable?.attributes, "One must have an attribute instance attached to the table.");
+        XCTAssertNotNil(parser?.votable?.customAttributes, "One must have an attribute instance attached to the table.");
         XCTAssertTrue(parser?.votable?.version == "1.3", "Version of VOTable is wrong.")
+    }
+
+    func testParserVOTableResource() {
+        let parser = VOTableParser(xmlString: simpleTableXMLString)
+        parser?.parse()
+        XCTAssertTrue(parser?.votable?.resources?.count == 1, "Resources cannot be found.")
+        let resource : Resource? = parser?.votable?.resources?.first;
+        println("\(resource)")
+        println("\(resource?.name)")
+        XCTAssertTrue(resource?.name == "myFavouriteGalaxies", "Resource name could not be found.");
     }
 }
 

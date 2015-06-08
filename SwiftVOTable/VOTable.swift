@@ -16,8 +16,8 @@
 import Foundation
 
 protocol VOTableElementSpecification {
-    func voTableElementValueName() -> String
-    func voTableElementChildrenName() -> String
+    func voTableElementValueName() -> String?
+    func voTableElementChildrenNames() -> Array<String>?
 }
 
 struct VOTableTranslations {
@@ -78,23 +78,54 @@ public class VOTableElement: NSObject {
         // Element opening
         xml += "<\(className)"
 
+        // Atttributes
         var propertyNamesSet: Set<String> = Set(self.propertyNames())
 
         if let object = self as? VOTableElementSpecification {
-            // Atttributes
-            propertyNamesSet.remove(object.voTableElementValueName())
-            propertyNamesSet.remove(object.voTableElementChildrenName())
+            if let valueName = object.voTableElementValueName() {
+                propertyNamesSet.remove(valueName)
+            }
+            
+            if let childrenNames = object.voTableElementChildrenNames() {
+                for childrenName in childrenNames {
+                    propertyNamesSet.remove(childrenName)
+                }
+            }
         }
 
         for propertyName: String in Array(propertyNamesSet) {
             if let value: String = self.valueForKey(propertyName) as? String {
-                xml += " \(propertyName)=\(value)"
+                xml += " \(propertyName)=\"\(value)\""
+            }
+        }
+        
+        if self.customAttributes.count > 0 {
+            for (key, value) in self.customAttributes {
+                xml += " \(key)=\"\(value)\""
             }
         }
 
         xml += ">\n"
         
-        // value or children
+        if let object = self as? VOTableElementSpecification {
+            if let valueName = object.voTableElementValueName() {
+                if let value : String = self.valueForKey(valueName) as? String {
+                    xml += "\(value)"
+                }
+            }
+            
+            if let childrenNames = object.voTableElementChildrenNames() {
+                for childrenName in childrenNames {
+                    if let childrenValues : Array<AnyObject> = self.valueForKey(childrenName) as? Array<AnyObject> {
+                        for childrenValue in childrenValues {
+                            if childrenValue is VOTableElement {
+                                xml += childrenValue.voTableString()
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         // Element closing
         xml += "</\(className)>\n"
@@ -325,7 +356,7 @@ public class Resource: VOTableElement {
 
 // "A VOTable document contains one or more RESOURCE elements, each of these providing a description and the data values 
 // of some logically independent data structure."
-public class VOTable: VOTableElement {
+public class VOTable: VOTableElement, VOTableElementSpecification {
     public var ID: String?
     public var version: String?
 
@@ -334,4 +365,9 @@ public class VOTable: VOTableElement {
     public var groups: [Group]?
     
     public var resources: [Resource]?
+    
+    func voTableElementValueName() -> String? { return nil }
+    func voTableElementChildrenNames() -> Array<String>?  {
+        return ["infos", "params", "groups", "resources"]
+    }
 }

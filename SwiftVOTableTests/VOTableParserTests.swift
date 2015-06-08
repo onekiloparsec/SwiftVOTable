@@ -55,9 +55,9 @@ class VOTableParserTests: XCTestCase {
         parser?.parse()
         XCTAssertTrue(parser?.votable?.resources?.count == 1, "Resources cannot be found.")
         let resource : Resource? = parser?.votable?.resources?.first;
-        println("\(resource)")
-        println("\(resource?.name)")
         XCTAssertTrue(resource?.name == "myFavouriteGalaxies", "Resource name could not be found.");
+        
+        println("\(parser!.votable!.voTableString())")
     }
 }
 

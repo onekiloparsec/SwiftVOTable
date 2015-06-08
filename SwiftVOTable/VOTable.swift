@@ -20,26 +20,8 @@ protocol VOTableElementSpecification {
     func voTableElementChildrenName() -> String
 }
 
-extension NSObject {
-
-    // Borrowed from https://www.weheartswift.com/swift-objc-magic/
-    func propertyNames() -> [String] {
-        var names: [String] = []
-        var count: UInt32 = 0
-        // Uses the Objc Runtime to get the property list
-        var properties = class_copyPropertyList(self.dynamicType, &count)
-        for var i = 0; i < Int(count); ++i {
-            let property: objc_property_t = properties[i]
-            let name: String = NSString(CString: property_getName(property), encoding: NSUTF8StringEncoding) as! String
-            names.append(name)
-        }
-        free(properties)
-        return names
-    }
-    
-    func hasProperty(name: String) -> Bool! {
-        return Set(self.propertyNames()).contains(name)
-    }
+struct VOTableTranslations {
+    static let PropertyAliases = [ "ID": "id", "voDescription": "description" ]
 }
 
 public class VOTableElement: NSObject {
@@ -89,28 +71,35 @@ public class VOTableElement: NSObject {
     }
     
     public func voTableString() -> String {
+        let className = NSStringFromClass(self.dynamicType).componentsSeparatedByString(".").last!.uppercaseString
+        
+        var xml = String()
+
+        // Element opening
+        xml += "<\(className)"
+
+        var propertyNamesSet: Set<String> = Set(self.propertyNames())
+
         if let object = self as? VOTableElementSpecification {
-            var xml = String()
-            
-            // Element opening
-            xml += "<\(NSStringFromClass(self.dynamicType))"
-            
             // Atttributes
-            var propertyNamesSet: Set<String> = Set(self.propertyNames())
             propertyNamesSet.remove(object.voTableElementValueName())
             propertyNamesSet.remove(object.voTableElementChildrenName())
-            
-            for propertyName: String in Array(propertyNamesSet) {
-                xml += "\(propertyName)=\(self.valueForKey(propertyName))"
-            }
-            xml += " >"
-            
-            // value or children
-            
-            // Element closing
-            xml += "<\(NSStringFromClass(self.dynamicType)) />\n"
         }
-        return ""
+
+        for propertyName: String in Array(propertyNamesSet) {
+            if let value: String = self.valueForKey(propertyName) as? String {
+                xml += " \(propertyName)=\(value)"
+            }
+        }
+
+        xml += ">\n"
+        
+        // value or children
+
+        // Element closing
+        xml += "</\(className)>\n"
+        
+        return xml
     }
 }
 
@@ -302,12 +291,6 @@ public class TableData {
 }
 
 
-extension String {
-    func plural() -> String {
-        return self + "s"
-    }
-}
-
 // "The TABLE element represents the basic data structure in VOTable; it comprises a description of the table structure
 // (the metadata) essentially in the form of PARAM and FIELD elements, followed by the values of the described fields 
 // in a DATA element. The TABLE element is always contained in a RESOURCE element."
@@ -345,8 +328,10 @@ public class Resource: VOTableElement {
 public class VOTable: VOTableElement {
     public var ID: String?
     public var version: String?
-    public var resources: [Resource]?
+
     public var infos: [Info]?
     public var params: [Param]?
     public var groups: [Group]?
+    
+    public var resources: [Resource]?
 }

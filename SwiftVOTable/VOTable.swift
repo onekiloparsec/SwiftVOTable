@@ -73,64 +73,30 @@ public class VOTableElement: NSObject {
     public func voTableString() -> String {
         let className = NSStringFromClass(self.dynamicType).componentsSeparatedByString(".").last!.uppercaseString
         
-        var xml = String()
-
+        var xmlOpening = String()
+        var xmlChildren = String()
+        let xmlClosing = "</\(className)>\n"
+        
         // Element opening
-        xml += "<\(className)"
+        xmlOpening += "<\(className) "
 
-        // Atttributes
-        var propertyNamesSet: Set<String> = Set(self.propertyNames())
-
-        if let object = self as? VOTableElementSpecification {
-            if let valueName = object.voTableElementValueName() {
-                propertyNamesSet.remove(valueName)
-            }
-            
-            if let childrenNames = object.voTableElementChildrenNames() {
-                for childrenName in childrenNames {
-                    propertyNamesSet.remove(childrenName)
-                }
-            }
+        let attributeNames: Array<String> = self.propertyNames().filter({$0 != "customAttributes"}).filter({self.valueForKey($0) is String})
+        xmlOpening = attributeNames.reduce(xmlOpening) {
+            wholeString, attributeName in
+            return "\(wholeString) \(attributeName)=\"\(self.valueForKey(attributeName) as! String)\""
         }
-
-        for propertyName: String in Array(propertyNamesSet) {
-            if let value: String = self.valueForKey(propertyName) as? String {
-                xml += " \(propertyName)=\"\(value)\""
+        
+        if (self.customAttributes.count > 0) {
+            xmlOpening += " "
+            xmlOpening = reduce(self.customAttributes, xmlOpening) {
+                wholeString, keyValue in
+                return "\(wholeString) \(keyValue.0)=\"\(keyValue.1)\""
             }
         }
         
-        if self.customAttributes.count > 0 {
-            for (key, value) in self.customAttributes {
-                xml += " \(key)=\"\(value)\""
-            }
-        }
-
-        xml += ">\n"
+        xmlOpening += ">\n"
         
-        if let object = self as? VOTableElementSpecification {
-            if let valueName = object.voTableElementValueName() {
-                if let value : String = self.valueForKey(valueName) as? String {
-                    xml += "\(value)"
-                }
-            }
-            
-            if let childrenNames = object.voTableElementChildrenNames() {
-                for childrenName in childrenNames {
-                    if let childrenValues : Array<AnyObject> = self.valueForKey(childrenName) as? Array<AnyObject> {
-                        for childrenValue in childrenValues {
-                            if childrenValue is VOTableElement {
-                                xml += childrenValue.voTableString()
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Element closing
-        xml += "</\(className)>\n"
-        
-        return xml
+        return xmlOpening + xmlChildren + xmlClosing
     }
 }
 

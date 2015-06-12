@@ -44,3 +44,13 @@ extension String {
         return self + "s"
     }
 }
+
+// See http://www.juliusparishy.com/articles/2014/12/14/adopting-map-reduce-in-swift
+func join<T : Equatable>(objs: [T], separator: String) -> String {
+    return objs.reduce("") {
+        sum, obj in
+        let maybeSeparator = (obj == objs.last) ? "" : separator
+        return "\(sum)\(obj)\(maybeSeparator)"
+    }
+}
+

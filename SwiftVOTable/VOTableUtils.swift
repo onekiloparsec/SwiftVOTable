@@ -28,6 +28,10 @@ extension NSObject {
     func hasProperty(name: String) -> Bool! {
         return Set(self.propertyNames()).contains(name)
     }
+    
+    func isPropertyAnArray(name: String) -> Bool! {
+        return self.valueForKey(name) as AnyObject! is Array<AnyObject>
+    }    
 }
 
 extension String {

@@ -61,25 +61,38 @@ public class VOTableElement: NSObject {
         var xmlOpening = String()
         var xmlChildren = String()
         let xmlClosing = "</\(className)>\n"
+        let propertyNames = self.propertyNames()
         
         // Element opening
-        xmlOpening += "<\(className) "
+        xmlOpening += "<\(className) " // Note the ending white space.
         
-        let attributeNames: Array<String> = self.propertyNames().filter({$0 != "customAttributes"}).filter({self.valueForKey($0) is String})
+        let attributeNames: Array<String> = propertyNames.filter({$0 != "customAttributes"}).filter({ self.valueForKey($0) is String })
         xmlOpening = attributeNames.reduce(xmlOpening) {
             wholeString, attributeName in
-            return "\(wholeString) \(attributeName)=\"\(self.valueForKey(attributeName) as! String)\""
+            return "\(wholeString) \(attributeName)=\"\(self.valueForKey(attributeName) as! String)\"" // Note the separating white space
         }
         
         if (self.customAttributes.count > 0) {
             xmlOpening += " "
             xmlOpening = reduce(self.customAttributes, xmlOpening) {
                 wholeString, keyValue in
-                return "\(wholeString) \(keyValue.0)=\"\(keyValue.1)\""
+                return "\(wholeString) \(keyValue.0)=\"\(keyValue.1)\"" // Note the separating white space
             }
         }
         
         xmlOpening += ">\n"
+        
+        // One must certainly be able to reduce this a lot.
+        let childrenArrayNames = propertyNames.filter({$0 != "customAttributes"}).filter({ self.isPropertyAnArray($0) })
+        for childArrayName in childrenArrayNames {
+            if let childArray: Array<AnyObject> = self.valueForKey(childArrayName) as? Array<AnyObject> {
+                if childArray is [VOTableElement] {
+                    for childElement: VOTableElement in childArray as! Array<VOTableElement> {
+                        xmlChildren += childElement.voTableString()
+                    }
+                }
+            }
+        }
         
         return xmlOpening + xmlChildren + xmlClosing
     }

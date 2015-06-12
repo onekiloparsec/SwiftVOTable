@@ -24,82 +24,6 @@ struct VOTableTranslations {
     static let PropertyAliases = [ "ID": "id", "voDescription": "description" ]
 }
 
-public class VOTableElement: NSObject {
-    public var customAttributes: Dictionary<String, String> = [:]
-
-    required public init(_ rawAttributes: [NSObject : AnyObject]?) {
-        super.init()
-        
-        if let rawAttr = rawAttributes {
-            let propNamesSet = Set(self.propertyNames())
-            
-            for (keyAny, valueAny) in rawAttr {
-                let keyString = keyAny as! String
-                let valueString = valueAny as! String
-                
-                if propNamesSet.contains(keyString) {
-                    self.setValue(valueString, forKey:keyString)
-                }
-                else {
-                    self.customAttributes[keyString] = valueString
-                }
-            }
-        }
-    }
-    
-    public func setNewElement(newElement: VOTableElement, forPropertyName propertyName: String) {
-        let propertyPluralName = propertyName.plural()
-        
-        if (self.hasProperty(propertyName) == true) {
-            // Current element has property of that name. Set the property, and move the 'currentElement' cursor to the new one.
-            self.setValue(newElement, forKey:propertyName)
-        }
-        else if (self.hasProperty(propertyPluralName) == true) {
-            // Current element has a plural property of that name.
-            if var props : [NSObject] = self.valueForKey(propertyPluralName) as? [NSObject] {
-                // We already have a collection type for that property. Append the new element to it.
-                props.append(newElement)
-            }
-            else {
-                // Set the property to a list containing that element.
-                self.setValue([newElement], forKey:propertyPluralName)
-            }
-        }
-        else {
-            // Deal with error.
-        }
-    }
-    
-    public func voTableString() -> String {
-        let className = NSStringFromClass(self.dynamicType).componentsSeparatedByString(".").last!.uppercaseString
-        
-        var xmlOpening = String()
-        var xmlChildren = String()
-        let xmlClosing = "</\(className)>\n"
-        
-        // Element opening
-        xmlOpening += "<\(className) "
-
-        let attributeNames: Array<String> = self.propertyNames().filter({$0 != "customAttributes"}).filter({self.valueForKey($0) is String})
-        xmlOpening = attributeNames.reduce(xmlOpening) {
-            wholeString, attributeName in
-            return "\(wholeString) \(attributeName)=\"\(self.valueForKey(attributeName) as! String)\""
-        }
-        
-        if (self.customAttributes.count > 0) {
-            xmlOpening += " "
-            xmlOpening = reduce(self.customAttributes, xmlOpening) {
-                wholeString, keyValue in
-                return "\(wholeString) \(keyValue.0)=\"\(keyValue.1)\""
-            }
-        }
-        
-        xmlOpening += ">\n"
-        
-        return xmlOpening + xmlChildren + xmlClosing
-    }
-}
-
 // "The VALUES element may contain MIN and MAX elements, and it may contain OPTION elements; the latter may itself
 // contain more OPTION elements, so that a hierarchy of keyword-values pairs can be associated with each field."
 public struct Values {
@@ -270,9 +194,11 @@ public class Data {
     }
 }
 
-// "The TABLEDATA element is a way to build the table in pure XML, and has the advantage that XML tools can manipulate
-// and present the table data directly. The TABLEDATA element contains TR elements, which in turn contain TD elements —
-// i.e. the same conventions as in HTML."
+/**
+*  "The TABLEDATA element is a way to build the table in pure XML, and has the advantage that XML tools can manipulate
+*  and present the table data directly. The TABLEDATA element contains TR elements, which in turn contain TD elements —
+*  i.e. the same conventions as in HTML."
+*/
 public struct TD {
     var encoding: String?
     var value: String?
@@ -288,22 +214,24 @@ public class TableData {
 }
 
 
-// "The TABLE element represents the basic data structure in VOTable; it comprises a description of the table structure
-// (the metadata) essentially in the form of PARAM and FIELD elements, followed by the values of the described fields 
-// in a DATA element. The TABLE element is always contained in a RESOURCE element."
+/**
+*  "The TABLE element represents the basic data structure in VOTable; it comprises a description of the table structure
+*  (the metadata) essentially in the form of PARAM and FIELD elements, followed by the values of the described fields
+*  in a DATA element. The TABLE element is always contained in a RESOURCE element."
+*/
 public class Table: VOTableElement {
-    var ID: String?
-    var name: String?
-    var ucd: String?
-    var utype: String?
-    var ref: String?
-    var nrows: String?
+    public var ID: String?
+    public var name: String?
+    public var ucd: String?
+    public var utype: String?
+    public var ref: String?
+    public var nrows: String?
     
-    var voDescription: Description?
+    public var voDescription: Description?
 
-    var params: [Param]?
-    var fields: [Field]?
-    var groups: [Group]?
+    public var params: [Param]?
+    public var fields: [Field]?
+    public var groups: [Group]?
 }
 
 public class Resource: VOTableElement {
@@ -320,8 +248,10 @@ public class Resource: VOTableElement {
     public var links: [Link]?    
 }
 
-// "A VOTable document contains one or more RESOURCE elements, each of these providing a description and the data values 
-// of some logically independent data structure."
+/**
+*  "A VOTable document contains one or more RESOURCE elements, each of these providing a description and the data values 
+*  of some logically independent data structure."
+*/
 public class VOTable: VOTableElement, VOTableElementSpecification {
     public var ID: String?
     public var version: String?

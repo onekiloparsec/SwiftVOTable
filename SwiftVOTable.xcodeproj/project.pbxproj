@@ -26,6 +26,8 @@
 		9F5943441AE28ECA00D9D2CA /* SwiftVOTable.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F5943081AE282D800D9D2CA /* SwiftVOTable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FB3BA291B255F78006A056F /* VOTableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3BA281B255F78006A056F /* VOTableUtils.swift */; };
 		9FB3BA2A1B255F78006A056F /* VOTableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3BA281B255F78006A056F /* VOTableUtils.swift */; };
+		9FE8DECF1B2B30C400609853 /* VOTableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8DECE1B2B30C400609853 /* VOTableElement.swift */; };
+		9FE8DED01B2B30C400609853 /* VOTableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8DECE1B2B30C400609853 /* VOTableElement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,7 @@
 		9F5943251AE2842300D9D2CA /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/Mac/Runes.framework; sourceTree = "<group>"; };
 		9F59432E1AE286C200D9D2CA /* SwiftVOTableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftVOTableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB3BA281B255F78006A056F /* VOTableUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOTableUtils.swift; sourceTree = "<group>"; };
+		9FE8DECE1B2B30C400609853 /* VOTableElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOTableElement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,7 @@
 				9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */,
 				9F4E2EDA1B22FE100055072A /* VOTableConstants.swift */,
 				9FB3BA281B255F78006A056F /* VOTableUtils.swift */,
+				9FE8DECE1B2B30C400609853 /* VOTableElement.swift */,
 				9F01ABA71ABD68BD00EB6373 /* Supporting Files */,
 			);
 			path = SwiftVOTable;
@@ -317,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F35E3091AD03C7C0008D7FF /* VOTableParser.swift in Sources */,
+				9FE8DED01B2B30C400609853 /* VOTableElement.swift in Sources */,
 				9F4E2EDC1B22FE100055072A /* VOTableConstants.swift in Sources */,
 				9F01ABC11ABD717300EB6373 /* VOTable.swift in Sources */,
 				9FB3BA2A1B255F78006A056F /* VOTableUtils.swift in Sources */,
@@ -328,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F59433E1AE2897000D9D2CA /* VOTableParser.swift in Sources */,
+				9FE8DECF1B2B30C400609853 /* VOTableElement.swift in Sources */,
 				9F4E2EDB1B22FE100055072A /* VOTableConstants.swift in Sources */,
 				9F59433C1AE2896D00D9D2CA /* VOTable.swift in Sources */,
 				9FB3BA291B255F78006A056F /* VOTableUtils.swift in Sources */,

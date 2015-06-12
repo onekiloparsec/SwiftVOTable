@@ -73,7 +73,6 @@ public class VOTableElement: NSObject {
         }
         
         if (self.customAttributes.count > 0) {
-            xmlOpening += " "
             xmlOpening = reduce(self.customAttributes, xmlOpening) {
                 wholeString, keyValue in
                 return "\(wholeString) \(keyValue.0)=\"\(keyValue.1)\"" // Note the separating white space

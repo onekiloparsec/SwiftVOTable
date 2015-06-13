@@ -8,8 +8,13 @@
 
 import Foundation
 
+struct VOTableTranslations {
+    static let PropertyAliases = [ "id": "ID", "description": "voDescription" ]
+}
+
 public class VOTableElement: NSObject {
     public var customAttributes: Dictionary<String, String> = [:]
+    public weak var parentElement: VOTableElement?
     
     required public init(_ rawAttributes: [NSObject : AnyObject]?) {
         super.init()
@@ -31,28 +36,38 @@ public class VOTableElement: NSObject {
             }
         }
     }
-    
-    public func setNewElement(newElement: VOTableElement, forPropertyName propertyName: String) {
+        
+    public func setNewElement(newElement: VOTableElement, var forPropertyName propertyName: String) {
+        let translationKeys = VOTableTranslations.PropertyAliases.keys.array
+        if (find(translationKeys, propertyName) != nil) {
+            propertyName = VOTableTranslations.PropertyAliases[propertyName]!
+        }
+        
         let propertyPluralName = propertyName.plural()
         
         if (self.hasProperty(propertyName) == true) {
             // Current element has property of that name. Set the property, and move the 'currentElement' cursor to the new one.
             self.setValue(newElement, forKey:propertyName)
+            println("Setting \(newElement) for property name \(propertyName) to \(self)")
         }
         else if (self.hasProperty(propertyPluralName) == true) {
             // Current element has a plural property of that name.
             if var props : [NSObject] = self.valueForKey(propertyPluralName) as? [NSObject] {
                 // We already have a collection type for that property. Append the new element to it.
                 props.append(newElement)
+                println("Appending \(newElement) for property name \(propertyPluralName) to \(self)")
             }
             else {
                 // Set the property to a list containing that element.
                 self.setValue([newElement], forKey:propertyPluralName)
+                println("Setting [\(newElement)] for property name \(propertyPluralName) to \(self)")
             }
         }
         else {
             // Deal with error.
         }
+        
+        newElement.parentElement = self;
     }
     
     public func voTableString() -> String {
@@ -60,11 +75,10 @@ public class VOTableElement: NSObject {
         
         var xmlOpening = String()
         var xmlChildren = String()
-        let xmlClosing = "</\(className)>\n"
         let propertyNames = self.propertyNames()
         
         // Element opening
-        xmlOpening += "<\(className) " // Note the ending white space.
+        xmlOpening += "<\(className)"
         
         let attributeNames: Array<String> = propertyNames.filter({$0 != "customAttributes"}).filter({ self.valueForKey($0) is String })
         xmlOpening = attributeNames.reduce(xmlOpening) {
@@ -79,8 +93,6 @@ public class VOTableElement: NSObject {
             }
         }
         
-        xmlOpening += ">\n"
-        
         // One must certainly be able to reduce this a lot.
         let childrenArrayNames = propertyNames.filter({$0 != "customAttributes"}).filter({ self.isPropertyAnArray($0) })
         for childArrayName in childrenArrayNames {
@@ -93,6 +105,14 @@ public class VOTableElement: NSObject {
             }
         }
         
-        return xmlOpening + xmlChildren + xmlClosing
+        if xmlChildren.length > 0 {
+            xmlOpening += ">\n"
+            let xmlClosing = "</\(className)>\n"
+            return xmlOpening + xmlChildren + xmlClosing
+        }
+        else {
+            xmlOpening += " />\n"
+            return xmlOpening
+        }
     }
 }

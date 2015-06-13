@@ -8,20 +8,17 @@
 
 import Foundation
 
-extension NSObject {
+extension VOTableElement {
     
     // Borrowed from https://www.weheartswift.com/swift-objc-magic/
     func propertyNames() -> [String] {
         var names: [String] = []
-        var count: UInt32 = 0
-        // Uses the Objc Runtime to get the property list
-        var properties = class_copyPropertyList(self.dynamicType, &count)
-        for var i = 0; i < Int(count); ++i {
-            let property: objc_property_t = properties[i]
-            let name: String = NSString(CString: property_getName(property), encoding: NSUTF8StringEncoding) as! String
-            names.append(name)
+        
+        names += self.propertyNamesOfClass(self.dynamicType)
+        if !self.isMemberOfClass(VOTableElement) {
+            names += self.propertyNamesOfClass(self.superclass!)
         }
-        free(properties)
+        
         return names
     }
     
@@ -31,7 +28,21 @@ extension NSObject {
     
     func isPropertyAnArray(name: String) -> Bool! {
         return self.valueForKey(name) as AnyObject! is Array<AnyObject>
-    }    
+    }
+    
+    func propertyNamesOfClass(cls: AnyClass) -> [String] {
+        var names: [String] = []
+        var count: UInt32 = 0
+        // Uses the Objc Runtime to get the property list
+        var properties = class_copyPropertyList(cls, &count)
+        for var i = 0; i < Int(count); ++i {
+            let property: objc_property_t = properties[i]
+            let name: String = NSString(CString: property_getName(property), encoding: NSUTF8StringEncoding) as! String
+            names.append(name)
+        }
+        free(properties)
+        return names
+    }
 }
 
 extension String {

@@ -13,16 +13,19 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
     
     public let xmlString: String!
     public var votable: VOTable?
+    
     private var currentElement: VOTableElement?
-    private let VOTableClasses: [VOTableElement.Type]
-    private let VOTableClassNames: [NSString]
+    private var currentContent: String?
+    
+    private let elementClasses: [VOTableElement.Type]
+    private let elementNames: [NSString]
 
     public init?(xmlString: String?) {
         self.xmlString = xmlString
         self.votable = nil
         
-        self.VOTableClasses = [VOTable.self, Resource.self, Table.self]
-        self.VOTableClassNames = self.VOTableClasses.map({ (NSStringFromClass($0).componentsSeparatedByString(".").last! as String).lowercaseString })
+        self.elementClasses = [VOTable.self, Resource.self, Table.self, Group.self, Param.self, Description.self]
+        self.elementNames = self.elementClasses.map({ (NSStringFromClass($0).componentsSeparatedByString(".").last! as String).lowercaseString })
         
         super.init()
 
@@ -49,10 +52,10 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
     }
 
     public func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
-        println("element start: \(elementName)")
 
-        if let index = find(self.VOTableClassNames, elementName.lowercaseString) {
-            let voClass = VOTableClasses[index] as VOTableElement.Type
+        if let index = find(self.elementNames, elementName.lowercaseString) {
+            println("element start: \(elementName)")
+            let voClass = elementClasses[index] as VOTableElement.Type
 
             var newElement = voClass(attributeDict)
             
@@ -68,12 +71,18 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
         }
     }
     
+    public func parser(parser: NSXMLParser, foundCharacters string: String?) {
+        if let contentString = string {
+            if currentContent == nil {
+                currentContent = ""
+            }
+            currentContent! += contentString
+        }
+    }
+
     public func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         println("element finish: \(elementName)")
-    }
-    
-    public func parser(parser: NSXMLParser, foundCharacters string: String?) {
-        println("current element (\(currentElement)) -->> \(string)")
+        currentElement = currentElement?.parentElement
     }
     
     public func parserDidEndDocument(parser: NSXMLParser) {

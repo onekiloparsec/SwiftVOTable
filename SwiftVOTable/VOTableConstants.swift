@@ -23,4 +23,4 @@ public enum Primitive {
     case doubleComplex
 }
 
-public typealias Description = String
+//public typealias Description = String

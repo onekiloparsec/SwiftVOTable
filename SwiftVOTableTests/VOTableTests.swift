@@ -8,12 +8,21 @@
 
 import UIKit
 import XCTest
+import SwiftVOTable
 
 class VOTableTests: XCTestCase {
     
+    var simpleTableXMLString: String!
+    var simpleTableParser: VOTableParser!
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+
+        println(NSBundle.mainBundle().resourcePath)
+        let path = NSBundle(forClass: self.dynamicType).pathForResource("OfficialVOTableDocSimpleTable", ofType: "txt")
+        simpleTableXMLString = String(contentsOfFile: path!, encoding: NSUTF8StringEncoding, error: nil)!
+        simpleTableParser = VOTableParser(xmlString: simpleTableXMLString)
+        simpleTableParser.parse()
     }
     
     override func tearDown() {
@@ -21,16 +30,27 @@ class VOTableTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testParserVOTableResource() {
+        XCTAssertTrue(simpleTableParser.votable?.resources?.count == 1, "Resources cannot be found.")
+        let resource : Resource? = simpleTableParser.votable?.resources?.first;
+        XCTAssertTrue(resource?.name == "myFavouriteGalaxies", "Resource name could not be found.")
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+
+    func testParserVOTableResourceContent() {
+        let resource : Resource? = simpleTableParser.votable?.resources?.first
+        XCTAssertNil(resource?.infos, "No groups expected in resources")
+        XCTAssertNil(resource?.params, "No params expected in resources")
+        XCTAssertNil(resource?.groups, "No groups expected in resources")
+        XCTAssertNil(resource?.links, "No links expected in resources")
+        XCTAssertNotNil(resource?.tables, "Tables expected in resources")
     }
-    
+
+    func testParserVOTableResourceTableContent() {
+        let resource : Resource? = simpleTableParser.votable?.resources?.first;
+        XCTAssertTrue(resource?.tables?.first!.groups?.count > 0, "Missing groups in resources");
+        XCTAssertTrue(resource?.tables?.first!.params?.count > 0, "Missing params in resources");
+        
+        println("\(simpleTableParser.votable!.voTableString())")
+    }
+
 }

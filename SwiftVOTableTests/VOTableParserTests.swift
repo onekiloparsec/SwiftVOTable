@@ -8,7 +8,6 @@
 
 import UIKit
 import XCTest
-import Runes
 import SwiftVOTable
 
 class VOTableParserTests: XCTestCase {
@@ -48,16 +47,6 @@ class VOTableParserTests: XCTestCase {
         XCTAssertNotNil(parser?.votable, "One must have a VOTable instance.");
         XCTAssertNotNil(parser?.votable?.customAttributes, "One must have an attribute instance attached to the table.");
         XCTAssertTrue(parser?.votable?.version == "1.3", "Version of VOTable is wrong.")
-    }
-
-    func testParserVOTableResource() {
-        let parser = VOTableParser(xmlString: simpleTableXMLString)
-        parser?.parse()
-        XCTAssertTrue(parser?.votable?.resources?.count == 1, "Resources cannot be found.")
-        let resource : Resource? = parser?.votable?.resources?.first;
-        XCTAssertTrue(resource?.name == "myFavouriteGalaxies", "Resource name could not be found.");
-        
-        println("\(parser!.votable!.voTableString())")
     }
 }
 

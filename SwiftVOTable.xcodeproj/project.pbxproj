@@ -127,11 +127,11 @@
 			isa = PBXGroup;
 			children = (
 				9F01ABA91ABD68BD00EB6373 /* SwiftVOTable.h */,
+				9F4E2EDA1B22FE100055072A /* VOTableConstants.swift */,
+				9FE8DECE1B2B30C400609853 /* VOTableElement.swift */,
 				9F01ABC01ABD717300EB6373 /* VOTable.swift */,
 				9F35E3081AD03C7C0008D7FF /* VOTableParser.swift */,
-				9F4E2EDA1B22FE100055072A /* VOTableConstants.swift */,
 				9FB3BA281B255F78006A056F /* VOTableUtils.swift */,
-				9FE8DECE1B2B30C400609853 /* VOTableElement.swift */,
 				9F01ABA71ABD68BD00EB6373 /* Supporting Files */,
 			);
 			path = SwiftVOTable;

@@ -47,9 +47,13 @@ class VOTableTests: XCTestCase {
 
     func testParserVOTableResourceTableContent() {
         let resource : Resource? = simpleTableParser.votable?.resources?.first;
-        XCTAssertTrue(resource?.tables?.first!.groups?.count > 0, "Missing groups in resources");
-        XCTAssertTrue(resource?.tables?.first!.params?.count > 0, "Missing params in resources");
-        
+        XCTAssertTrue(resource?.tables?.first!.groups?.count == 1, "Missing groups in resources");
+        XCTAssertTrue(resource?.tables?.first!.params?.count == 1, "Missing params in resources");
+    }
+
+    func testParserVOTableResourceTableGroupContent() {
+        let resource : Resource? = simpleTableParser.votable?.resources?.first;
+        XCTAssertTrue(resource?.tables?.first!.groups?.first!.params?.count == 2, "Missing groups in table");
         println("\(simpleTableParser.votable!.voTableString())")
     }
 

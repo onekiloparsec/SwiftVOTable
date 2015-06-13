@@ -55,6 +55,8 @@ public class VOTableElement: NSObject {
             if var props : [NSObject] = self.valueForKey(propertyPluralName) as? [NSObject] {
                 // We already have a collection type for that property. Append the new element to it.
                 props.append(newElement)
+                // Not sure why, but we need to re-set the value.
+                self.setValue(props, forKey: propertyPluralName)
                 println("Appending \(newElement) for property name \(propertyPluralName) to \(self)")
             }
             else {
@@ -96,11 +98,9 @@ public class VOTableElement: NSObject {
         // One must certainly be able to reduce this a lot.
         let childrenArrayNames = propertyNames.filter({$0 != "customAttributes"}).filter({ self.isPropertyAnArray($0) })
         for childArrayName in childrenArrayNames {
-            if let childArray: Array<AnyObject> = self.valueForKey(childArrayName) as? Array<AnyObject> {
-                if childArray is [VOTableElement] {
-                    for childElement: VOTableElement in childArray as! Array<VOTableElement> {
-                        xmlChildren += childElement.voTableString()
-                    }
+            if let childArray: Array<VOTableElement> = self.valueForKey(childArrayName) as? Array<VOTableElement> {
+                for childElement: VOTableElement in childArray {
+                    xmlChildren += childElement.voTableString()
                 }
             }
         }

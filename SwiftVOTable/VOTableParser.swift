@@ -55,8 +55,8 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
 
         if let index = find(self.elementNames, elementName.lowercaseString) {
             println("element start: \(elementName)")
+            
             let voClass = elementClasses[index] as VOTableElement.Type
-
             var newElement = voClass(attributeDict)
             
             if (index == 0) {
@@ -81,8 +81,12 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
     }
 
     public func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        println("element finish: \(elementName)")
-        currentElement = currentElement?.parentElement
+        // One must check for the validity of elementName. If it is now known / valid, one shouldn't set a new value
+        // to currentElement to avoid moving up in the hierarchy while we haven't been down in the didStartElement.
+        if let index = find(self.elementNames, elementName.lowercaseString) {
+            currentElement = currentElement?.parentElement
+            println("element finish: \(elementName) new currentElement: \(currentElement)")
+        }
     }
     
     public func parserDidEndDocument(parser: NSXMLParser) {

@@ -25,13 +25,11 @@ public class VOTableElement: NSObject {
             
             for (keyAny, valueAny) in rawAttr {
                 let keyString = keyAny as! String
-                let valueString = valueAny as! String
-                
                 if propNamesSet.contains(keyString) {
-                    self.setValue(valueString, forKey:keyString)
+                    self.setValue(valueAny, forKey:keyString)
                 }
                 else {
-                    self.customAttributes[keyString] = valueString
+                    self.customAttributes[keyString] = valueAny as? String
                 }
             }
         }
@@ -48,7 +46,7 @@ public class VOTableElement: NSObject {
         if (self.hasProperty(propertyName) == true) {
             // Current element has property of that name. Set the property, and move the 'currentElement' cursor to the new one.
             self.setValue(newElement, forKey:propertyName)
-            println("Setting \(newElement) for property name \(propertyName) to \(self)")
+            println("Setting \(newElement) for property '\(propertyName)' to \(self)")
         }
         else if (self.hasProperty(propertyPluralName) == true) {
             // Current element has a plural property of that name.
@@ -57,12 +55,12 @@ public class VOTableElement: NSObject {
                 props.append(newElement)
                 // Not sure why, but we need to re-set the value.
                 self.setValue(props, forKey: propertyPluralName)
-                println("Appending \(newElement) for property name \(propertyPluralName) to \(self)")
+                println("Appending \(newElement) for property '\(propertyPluralName)' to \(self)")
             }
             else {
                 // Set the property to a list containing that element.
                 self.setValue([newElement], forKey:propertyPluralName)
-                println("Setting [\(newElement)] for property name \(propertyPluralName) to \(self)")
+                println("Setting [\(newElement)] for property '\(propertyPluralName)' to \(self)")
             }
         }
         else {

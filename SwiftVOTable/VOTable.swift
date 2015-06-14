@@ -143,16 +143,16 @@ public class TableData {
 
 // ************
 
-public class FieldRef : VOTableElement {
-    var ref: String!
-    var ucd: String?
-    var utype: String?    
+public class FIELDRef : VOTableElement {
+    public var ref: String!
+    public var ucd: String?
+    public var utype: String?
 }
 
-public class ParamRef : VOTableElement {
-    var ref: String!
-    var ucd: String?
-    var utype: String?
+public class PARAMRef : VOTableElement {
+    public var ref: String!
+    public var ucd: String?
+    public var utype: String?
 }
 
 /**
@@ -184,6 +184,7 @@ public class Field : VOTableElement {
     public var ucd: String?
     public var utype: String?
     public var ref: String?
+    
     public var voDescription: Description?
     
     //    init (name: String!, datatype: Primitive!) {
@@ -198,7 +199,7 @@ public class Field : VOTableElement {
 
 public class Param : Field {
     public var value: String!
-    
+
     //    init (name: String!, datatype: Primitive!, value: String!) {
     //        super.init(name: name, datatype: datatype)
     //        self.name = name
@@ -206,9 +207,6 @@ public class Param : Field {
     //        self.value = value
     //    }
     //
-    public required init(_ rawAttributes: [NSObject : AnyObject]?) {
-        super.init(rawAttributes)
-    }
 }
 
 /**

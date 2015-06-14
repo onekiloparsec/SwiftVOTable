@@ -24,7 +24,7 @@ public class VOTableParser: NSObject, NSXMLParserDelegate {
         self.xmlString = xmlString
         self.votable = nil
         
-        self.elementClasses = [VOTable.self, Resource.self, Table.self, Group.self, Param.self, Description.self]
+        self.elementClasses = [VOTable.self, Resource.self, Table.self, Group.self, Param.self, Field.self, Description.self, FIELDRef.self, PARAMRef.self]
         self.elementNames = self.elementClasses.map({ (NSStringFromClass($0).componentsSeparatedByString(".").last! as String).lowercaseString })
         
         super.init()

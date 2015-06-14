@@ -8,19 +8,19 @@
 
 import Foundation
 
-public enum Primitive {
-    case boolean
-    case bit
-    case unsignedByte
-    case short
-    case int
-    case long
-    case char
-    case unicodeChar
-    case float
-    case double
-    case floatComplex
-    case doubleComplex
+public enum Primitive : String {
+    case boolean = "boolean"
+    case bit = "bit"
+    case unsignedByte = "unsignedByte"
+    case short = "short"
+    case int = "int"
+    case long = "long"
+    case char = "char"
+    case unicodeChar = "unicodeChar"
+    case float = "float"
+    case double = "double"
+    case floatComplex = "floatComplex"
+    case doubleComplex = "doubleComplex"
 }
 
 //public typealias Description = String

@@ -70,11 +70,13 @@ public struct Option {
     }
 }
 
-// "The FITS format for binary tables [2] is in widespread use in astronomy, and its structure has had a major influence
-// on the VOTable specification. Metadata is stored in a header section, followed by the data. The metadata is 
-// essentially equivalent to the metadata of the VOTable format. One important difference is that VOTable does not 
-// require specification of the number of rows in the table, an important advantage if the table is being created 
-// dynamically from a stream."
+/**
+*  "The FITS format for binary tables [2] is in widespread use in astronomy, and its structure has had a major influence
+*  on the VOTable specification. Metadata is stored in a header section, followed by the data. The metadata is
+*  essentially equivalent to the metadata of the VOTable format. One important difference is that VOTable does not
+*  require specification of the number of rows in the table, an important advantage if the table is being created
+*  dynamically from a stream."
+*/
 public struct FITS {
     var extnum: String?
 }
@@ -89,22 +91,6 @@ public class Stream {
     var rights: String?
 }
 
-// Overriding setter to force INFO to always have datatype=char, and arraysize="*"
-public class Info: Param {
-    override public var datatype: Primitive! {
-        get { return .char }
-        set {}
-    }
-    override public var arraysize: String! {
-        get { return "*" }
-        set {}
-    }
-    
-//    init (name: String!, value: String!) {
-//        super.init(name: name, datatype: .char, value: value)
-//    }
-}
-
 public enum DataFormat {
     case TABLEDATA
     case FITS
@@ -112,36 +98,34 @@ public enum DataFormat {
     case BINARY2
 }
 
-public class Data {
-    let format: DataFormat!
-    let content: AnyObject!
-    init() {
-        self.format = nil
-        self.content = nil
-    }
-}
+
+// ************
 
 /**
 *  "The TABLEDATA element is a way to build the table in pure XML, and has the advantage that XML tools can manipulate
 *  and present the table data directly. The TABLEDATA element contains TR elements, which in turn contain TD elements —
 *  i.e. the same conventions as in HTML."
 */
-public struct TD {
-    var encoding: String?
-    var value: String?
+public class TD : VOTableElement {
+    public var encoding: String?
+    public var value: String?
 }
 
-public struct TR {
-    var ID: String?
-    var cells: [TD]?
+public class TR : VOTableElement {
+    public var ID: String?
+    public var cells: [TD]?
 }
 
-public class TableData {
-    var rows: [TR]?
+public class TableData : VOTableElement {
+    public var rows: [TR]?
 }
 
+public class Data : VOTableElement {
+    public var tableData: TableData?
+//    let format: DataFormat!
+//    let content: AnyObject!
+}
 
-// ************
 
 public class FIELDRef : VOTableElement {
     public var ref: String!
@@ -175,10 +159,10 @@ public class Description : VOTableElement {
 public class Field : VOTableElement {
     public var ID: String?
     public var name: String!
-    public var datatype: Primitive!
+    public var datatype: String!
     public var arraysize: String?
-    public var width: Int?
-    public var precision: Int?
+    public var width: String?
+    public var precision: String?
     public var xtype: String?
     public var unit: String?
     public var ucd: String?
@@ -187,26 +171,34 @@ public class Field : VOTableElement {
     
     public var voDescription: Description?
     
-    //    init (name: String!, datatype: Primitive!) {
-    //        self.name = name
-    //        self.datatype = datatype
-    //    }
-    //
-    //    required public init(_ rawAttributes: [NSObject : AnyObject]?) {
-    //        fatalError("init has not been implemented")
-    //    }
+    required public init(_ rawAttributes: [NSObject : AnyObject]?) {
+        super.init(rawAttributes)
+        assert(self.name != nil, "[Error] 'Field' element must have a value for the property 'name'")
+        assert(self.datatype != nil, "[Error] 'Field' element must have a value for the property 'datatype'")
+    }
 }
 
 public class Param : Field {
     public var value: String!
 
-    //    init (name: String!, datatype: Primitive!, value: String!) {
-    //        super.init(name: name, datatype: datatype)
-    //        self.name = name
-    //        self.datatype = datatype
-    //        self.value = value
-    //    }
-    //
+    required public init(_ rawAttributes: [NSObject : AnyObject]?) {
+        super.init(rawAttributes)
+        assert(self.name != nil, "[Error] 'Param' element must have a value for the property 'name'")
+        assert(self.datatype != nil, "[Error] 'Param' element must have a value for the property 'datatype'")
+        assert(self.value != nil, "[Error] 'Param' element must have a value for the property 'value'")
+    }
+}
+
+// Overriding setter to force INFO to always have datatype=char, and arraysize="*"
+public class Info: Param {
+    override public var datatype: String! {
+        get { return "char" }
+        set {}
+    }
+    override public var arraysize: String! {
+        get { return "*" }
+        set {}
+    }
 }
 
 /**
@@ -242,6 +234,8 @@ public class Table: VOTableElement {
     public var params: [Param]?
     public var fields: [Field]?
     public var groups: [Group]?
+    
+    public var data: Data?
 }
 
 public class Resource: VOTableElement {

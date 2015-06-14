@@ -42,7 +42,7 @@ class VOTableTests: XCTestCase {
         XCTAssertNil(resource?.params, "No params expected in resources")
         XCTAssertNil(resource?.groups, "No groups expected in resources")
         XCTAssertNil(resource?.links, "No links expected in resources")
-        XCTAssertNotNil(resource?.tables, "Tables expected in resources")
+        XCTAssertTrue(resource?.tables?.count == 1, "1 table expected in resources");
     }
 
     func testParserVOTableResourceTableContent() {

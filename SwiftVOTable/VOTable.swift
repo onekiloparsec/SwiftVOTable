@@ -108,7 +108,7 @@ public enum DataFormat {
 */
 public class TD : VOTableElement {
     public var encoding: String?
-    public var value: String?
+    public var content: String?
 }
 
 public class TR : VOTableElement {
@@ -261,10 +261,15 @@ public class Resource: VOTableElement {
 public class VOTable: VOTableElement {
     public var ID: String?
     public var version: String?
+    public var voDescription: Description?
 
     public var infos: [Info]?
     public var params: [Param]?
     public var groups: [Group]?
     
     public var resources: [Resource]?
+    
+    public func firstTableData() -> TableData? {
+        return self.resources?.first!.tables?.first!.data?.tableData
+    }
 }

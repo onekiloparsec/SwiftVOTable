@@ -14,7 +14,6 @@
 		9F4E2EDB1B22FE100055072A /* VOTableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E2EDA1B22FE100055072A /* VOTableConstants.swift */; };
 		9F4E2EDC1B22FE100055072A /* VOTableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E2EDA1B22FE100055072A /* VOTableConstants.swift */; };
 		9F5943211AE282F400D9D2CA /* SwiftVOTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F01ABA91ABD68BD00EB6373 /* SwiftVOTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9F5943241AE2841600D9D2CA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5943231AE2841600D9D2CA /* Runes.framework */; };
 		9F5943261AE2842300D9D2CA /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5943251AE2842300D9D2CA /* Runes.framework */; };
 		9F5943341AE286C200D9D2CA /* SwiftVOTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5943081AE282D800D9D2CA /* SwiftVOTable.framework */; };
 		9F59433A1AE287C000D9D2CA /* VOTableParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35E30A1AD043F50008D7FF /* VOTableParserTests.swift */; };
@@ -87,7 +86,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F5943241AE2841600D9D2CA /* Runes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

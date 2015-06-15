@@ -9,7 +9,13 @@
 import Foundation
 
 struct VOTableTranslations {
-    static let PropertyAliases = [ "id": "ID", "description": "voDescription" ]
+    static let PropertyAliases = [
+        "id": "ID",
+        "description": "voDescription",
+        "tabledata": "tableData",
+        "tr": "row",
+        "td": "cell"
+    ]
 }
 
 public class VOTableElement: NSObject {
@@ -46,7 +52,7 @@ public class VOTableElement: NSObject {
         if (self.hasProperty(propertyName) == true) {
             // Current element has property of that name. Set the property, and move the 'currentElement' cursor to the new one.
             self.setValue(newElement, forKey:propertyName)
-            println("Setting \(newElement) for property '\(propertyName)' to \(self)")
+//            println("Setting \(newElement) for property '\(propertyName)' to \(self)")
         }
         else if (self.hasProperty(propertyPluralName) == true) {
             // Current element has a plural property of that name.
@@ -55,16 +61,16 @@ public class VOTableElement: NSObject {
                 props.append(newElement)
                 // Not sure why, but we need to re-set the value.
                 self.setValue(props, forKey: propertyPluralName)
-                println("Appending \(newElement) for property '\(propertyPluralName)' to \(self)")
+//                println("Appending \(newElement) for property '\(propertyPluralName)' to \(self)")
             }
             else {
                 // Set the property to a list containing that element.
                 self.setValue([newElement], forKey:propertyPluralName)
-                println("Setting [\(newElement)] for property '\(propertyPluralName)' to \(self)")
+//                println("Setting [\(newElement)] for property '\(propertyPluralName)' to \(self)")
             }
         }
         else {
-            // Deal with error.
+            println("Can't set [\(newElement)] for property '\(propertyName)' to \(self)")
         }
         
         newElement.parentElement = self;
@@ -75,7 +81,7 @@ public class VOTableElement: NSObject {
         
         var xmlOpening = String()
         var xmlChildren = String()
-        let propertyNames = self.propertyNames()
+        let propertyNames = self.filteredPropertyNames()
         
         // Element opening
         xmlOpening += "<\(className)"
@@ -101,6 +107,10 @@ public class VOTableElement: NSObject {
                     xmlChildren += childElement.voTableString()
                 }
             }
+        }
+        
+        if (self.hasProperty("content") != nil && self.valueForKey("content")?.length > 0) {
+            xmlChildren += self.valueForKey("content") as! String!
         }
         
         if xmlChildren.length > 0 {

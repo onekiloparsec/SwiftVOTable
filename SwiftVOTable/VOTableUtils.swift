@@ -39,6 +39,11 @@ extension VOTableElement {
         return names
     }
     
+    func filteredPropertyNames() -> [String] {
+        var names = self.propertyNames()
+        return names.filter({ $0 != "content" && $0 != "parentElement" })
+    }
+    
     func hasProperty(name: String) -> Bool! {
         return Set(self.propertyNames()).contains(name)
     }

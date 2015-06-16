@@ -272,4 +272,8 @@ public class VOTable: VOTableElement {
     public func firstTableData() -> TableData? {
         return self.resources?.first!.tables?.first!.data?.tableData
     }
+    
+    public func firstTableFields() -> [Field]? {
+        return self.resources?.first!.tables?.first!.fields
+    }
 }

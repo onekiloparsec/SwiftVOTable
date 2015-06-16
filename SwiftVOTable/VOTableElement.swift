@@ -109,7 +109,7 @@ public class VOTableElement: NSObject {
             }
         }
         
-        if (self.hasProperty("content") != nil && self.valueForKey("content")?.length > 0) {
+        if (self.hasProperty("content")! && self.valueForKey("content")?.length > 0) {
             xmlChildren += self.valueForKey("content") as! String!
         }
         

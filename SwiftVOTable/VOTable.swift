@@ -109,6 +109,7 @@ public enum DataFormat {
 public class TD : VOTableElement {
     public var encoding: String?
     public var content: String?
+    public weak var field: Field
 }
 
 public class TR : VOTableElement {
@@ -235,7 +236,20 @@ public class Table: VOTableElement {
     public var fields: [Field]?
     public var groups: [Group]?
     
-    public var data: Data?
+    public var data: Data? {
+        didSet {
+            if let rows = data?.tableData?.rows {
+                for row in rows {
+                    if let cells = row.cells {
+                        assert(cells.count == self.fields?.count, "Cells and fields count do not match")
+                        for i in 0..<cells.count {
+                            cell.field = self.fields[i]
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 public class Resource: VOTableElement {
